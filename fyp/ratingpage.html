@@ -1,0 +1,309 @@
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    function star1() {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+
+                var html;
+                var reviewlist = $.parseJSON(this.result);
+                for (var i = 0; reviewlist.size; i++) {
+                    html += "<div style='display: block;margin-top: 10px'>\n" +
+                        "<div><label style='background-color: aliceblue;line-height: 50px' class='glyphicon glyphicon-user col-sm-12'>\n" + reviewlist[i].username +
+                        "\n";
+                    for (var j = 0; j < reviewlist[i].rating; j++) {
+                        html += "<span class='glyphicon glyphicon-star'></span>\n";
+                    }
+
+                    html += "                    </label>\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                    <div style='background-color: aliceblue;border:blue'>\n" +
+                        "                    <label style='margin-left: 20px'>hello</label>\n" +
+                        "\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "\n" +
+                        "                    </div>";
+                }
+
+                document.getElementById("hotelreviews").innerHTML = html;
+            }
+        };
+        xhttp.open("POST", "/ratingsendservlet?stars=1", true);
+        xhttp.send();
+        alert("hi 1");
+    }
+
+
+    function star2() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var html;
+                var reviewlist = $.parseJSON(this.result);
+                for (var i = 0; reviewlist.size; i++) {
+                    html += "<div style='display: block;margin-top: 10px'>\n" +
+                        "<div><label style='background-color: aliceblue;line-height: 50px' class='glyphicon glyphicon-user col-sm-12'>\n" + reviewlist[i].username +
+                        "\n";
+                    for (var j = 0; j < reviewlist[i].rating; j++) {
+                        html += "<span class='glyphicon glyphicon-star'></span>\n";
+                    }
+
+                    html += "                    </label>\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                    <div style='background-color: aliceblue;border:blue'>\n" +
+                        "                    <label style='margin-left: 20px'>hello</label>\n" +
+                        "\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "\n" +
+                        "                    </div>";
+                }
+
+                document.getElementById("hotelreviews").innerHTML = html;
+            }
+        };
+        xhttp.open("POST", "/ratingsendservlet?stars=2", true);
+        xhttp.send();
+    }
+
+
+
+    function star3() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var html;
+                var reviewlist = $.parseJSON(this.result);
+                for (var i = 0; reviewlist.size; i++) {
+                    html += "<div style='display: block;margin-top: 10px'>\n" +
+                        "<div><label style='background-color: aliceblue;line-height: 50px' class='glyphicon glyphicon-user col-sm-12'>\n" + reviewlist[i].username +
+                        "\n";
+                    for (var j = 0; j < reviewlist[i].rating; j++) {
+                        html += "<span class='glyphicon glyphicon-star'></span>\n";
+                    }
+
+                    html += "                    </label>\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                    <div style='background-color: aliceblue;border:blue'>\n" +
+                        "                    <label style='margin-left: 20px'>hello</label>\n" +
+                        "\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "\n" +
+                        "                    </div>";
+                }
+
+                document.getElementById("hotelreviews").innerHTML = html;
+            }
+        };
+        xhttp.open("POST", "/ratingsendservlet?stars=3", true);
+        xhttp.send();
+    }
+
+
+
+    function star4() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var html;
+                var reviewlist = $.parseJSON(this.result);
+                for (var i = 0; reviewlist.size; i++) {
+                    html += "<div style='display: block;margin-top: 10px'>\n" +
+                        "<div><label style='background-color: aliceblue;line-height: 50px' class='glyphicon glyphicon-user col-sm-12'>\n" + reviewlist[i].username +
+                        "\n";
+                    for (var j = 0; j < reviewlist[i].rating; j++) {
+                        html += "<span class='glyphicon glyphicon-star'></span>\n";
+                    }
+
+                    html += "                    </label>\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                    <div style='background-color: aliceblue;border:blue'>\n" +
+                        "                    <label style='margin-left: 20px'>hello</label>\n" +
+                        "\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "\n" +
+                        "                    </div>";
+                }
+
+                document.getElementById("hotelreviews").innerHTML = html;
+            }
+        };
+        xhttp.open("POST", "/ratingsendservlet?stars=4", true);
+        xhttp.send();
+    }
+
+
+
+    function star5() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var html;
+                var reviewlist = $.parseJSON(this.result);
+                for (var i = 0; reviewlist.size; i++) {
+                    html += "<div style='display: block;margin-top: 10px'>\n" +
+                        "<div><label style='background-color: aliceblue;line-height: 50px' class='glyphicon glyphicon-user col-sm-12'>\n" + reviewlist[i].username +
+                        "\n";
+                    for (var j = 0; j < reviewlist[i].rating; j++) {
+                        html += "<span class='glyphicon glyphicon-star'></span>\n";
+                    }
+
+                    html += "                    </label>\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                    <div style='background-color: aliceblue;border:blue'>\n" +
+                        "                    <label style='margin-left: 20px'>hello</label>\n" +
+                        "\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "\n" +
+                        "                    </div>";
+                }
+
+                document.getElementById("hotelreviews").innerHTML = html;
+            }
+        };
+        xhttp.open("POST", "/ratingsendservlet?stars=5", true);
+        xhttp.send();
+    }
+
+</script>
+
+
+
+
+
+
+</head>
+<body style="background-image: url(Images/hotels/hardrock.jpg);background-repeat: no-repeat;background-position: center;background-attachment:fixed; background-size: 100%">
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="mainpage.html">SmartInvestment</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li ><a href="Banking.html">Banking</a></li>
+                </ul>
+				<ul class="nav navbar-nav">
+                    <li class="active"><a href="RealEstate.html">Real Estate</a></li>
+                </ul>
+				<ul class="nav navbar-nav">
+                    <li ><a href="userprofile.html">Profile</a></li>
+                </ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+                    <li><a href="mainpage.html" class="glyphicon glyphicon-user"> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+</nav>
+<div style="margin-top:80px"></div>
+<div class="col-sm-3 bg-success">
+
+<a href="RealEstate.html">< BACK <</a>
+
+</div>
+
+
+<div class="col-sm-6 " style="opacity:1">
+    <div ></div>
+
+    <div class="container-fluid bg-success" style="" >
+        <div class="row" style="display: block" >
+            <div><img  class="col-sm-12" src="house.jpg" height="500px" width="500px"/></div>
+            <div class="col-sm-6" >
+                <div><label> </label></div>
+                <div><label></label></div>
+                <div><label> </label></div>
+				        <h3> 8 marla dream house for sale </h3>
+		<h4> Location : Bahria Town - Umar Block, Bahria Town - Sector B</h4>
+		<h4> Price: 1.45 Crore </h4>
+		<p>8 Marla Dream house for sale.Owner built House is available for sale.It is situated in Bahria... more </p>
+
+                <span  class="glyphicon glyphicon-star-empty" onclick="star1()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star2()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star3()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star4()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star5()"></span>
+
+                <div><textarea></textarea></div>
+                <div><input style="margin-top:5px" type="button" value="Give Review"/></div>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+
+<div class="col-sm-3 bg-success">
+            <div class="col-sm-6" >
+                <div><label> </label></div>
+                <div><label></label></div>
+                <div><label> </label></div>
+				        <h3> 8 marla dream house for sale </h3>
+		<h4> Location : Bahria Town - Umar Block, Bahria Town - Sector B</h4>
+		<h4> Price: 1.45 Crore </h4>
+		<p>8 Marla Dream house for sale.Owner built House is available for sale.It is situated in Bahria... more </p>
+
+                <span  class="glyphicon glyphicon-star-empty" onclick="star1()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star2()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star3()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star4()"></span>
+                <span class="glyphicon glyphicon-star-empty" onclick="star5()"></span>
+
+                <div><textarea></textarea></div>
+                <div><input style="margin-top:5px" type="button" value="Give Review"/></div>
+
+
+            </div>
+
+
+
+</div>
+
+
+
+<div id="hotelreviews" style="margin-top: 20px" class="col-sm-12">
+
+</div>
+
+
+
+
+
+
+</body>
+</html>
