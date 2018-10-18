@@ -1,3 +1,7 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Business_Layer.Realestate" %>
+<%@ page import="javax.jms.*" %>
+<%@ page import="java.io.Serializable" %>
 <%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
@@ -7,89 +11,277 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
+
 <head>
-    <title>Real Estate</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        p {
-            color:blue;
-        }
+    <title>InvestSmart</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    </style>
+    <!-- Favicons -->
+    <link href="img/logo.png" rel="icon">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+
+
+
+
 </head>
-<body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="mainpage.html">INVESTSmart</a>
+<body id="body">
+
+<div id="insideBody">
+    <!--==========================
+Top Bar
+============================-->
+    <section id="topbar" class="d-none d-lg-block">
+        <div class="container clearfix">
+            <div class="contact-info float-left">
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+                <i class="fa fa-phone"></i> +1 5589 55488 55
+            </div>
+            <div class="social-links float-right">
+                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
         </div>
-        <ul class="nav navbar-nav">
-            <li ><a href="Banking.html">Banking</a></li>
-        </ul>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="RealEstate.html">Real Estate</a></li>
-        </ul>
-        <ul class="nav navbar-nav">
-            <li ><a href="userprofile.html">Profile</a></li>
-        </ul>
+    </section>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li><a onclick="document.getElementById('id01').style.display='block'" href="contactus.html"><span class="glyphicon glyphicon-phone"></span>Contact Us (03341731677)</a></li>
+    <!--==========================
+Header
+============================-->
+    <header id="header">
+        <div class="container">
 
-            <li><a href="mainpage.html" class="glyphicon glyphicon-user"> Logout</a></li>
+            <div id="logo" class="pull-left">
+                <h1>
+                    <a href="/">
+                        <img src="img/main-logo.png" alt="investSMART">
+                    </a>
 
-        </ul>
+                </h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="#body">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login" data-toggle="modal">Login</a></li>
+                    <li><a href="#" class="btn signup">Signup</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+
+
+
+    <h2 style="text-align: center;margin-top: 100px">City Location Name</h2>
+    <form class="form-inline" id="searchform" style="margin-left: 38%;">
+        <input type="text" class="form-control input-lg" id="myInput" placeholder="Click here">
+        <button type="button" class="btn btn-default" style="margin-left: 5px;">Search</button>
+    </form>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3" id="sidebar">
+                <div class="list-group">
+
+                    <label for="customRange2"><h3 style="margin-bottom: 0px;">Price</h3></label>
+                    <input type="range" class="custom-range" min="0" max="5" id="customRange2">
+                    <div style="display: flex;flex-direction: row;margin-top: 3%;">
+                        <p>Min:Rs 0</p>
+                        <p style="margin-left:50%">Max:Rs 5</p>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-9">
+
+                <%
+
+                    ArrayList<Realestate> recievedrealestate=(ArrayList<Realestate>) (request.getAttribute("comingrealestate"));
+
+
+
+                    if(!recievedrealestate.isEmpty())
+                    {
+                    for(int i=0;i<recievedrealestate.size();i++)
+                    {
+
+
+                %>
+
+
+                <div class="container-fluid">
+                    <div class="row" id="group" style="border-top: 1px solid #E5E5E5;margin-bottom: 10px">
+
+                        <div class="col-sm-4" style="padding: 10px">
+                            <img src="http://i.stack.imgur.com/25Rl3.jpg" class="img-rounded" alt="Cinq Tre" width="100%" height="100%">
+                        </div>
+                        <div class="col-sm-4" style="border-right: 1px solid #a6a6a6;margin-top: 2%;margin-bottom: 2%;width: 100%">
+                            <h3 style="font-family: 'Roboto Mono', monospace;"><%recievedrealestate.get(i).getTitle(); %></h3>
+                            <h3 style="text-align: right"><b>PKR</b> <% recievedrealestate.get(i).getPrice(); %>  </h3>
+                            <a class="btn btn-success btn-lg reviewLink">View Deals</a>
+                        </div>
+
+                        <div class="col-sm-4" style="margin-top: 5%">
+                            <p>72 reviews</p>
+                            <p><b>Location :</b> <% recievedrealestate.get(i).getLocation();%></p>
+                        </div>
+                        <!--</ng-container>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-12" class="pagination" style="margin-top: 5%">
+
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">6</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">7</a></li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <%
+                    }
+                    }
+                %>
+
+            </div>
+        </div>
     </div>
-</nav>
 
-<div class="col-md-2"></div>
-<div class="col-md-8 bg-success" style="text-align:center;border:1px solid black">
-    <h2>  Real Estate</h2>
-    <a href="ratingpage.html"><h3> 8 marla dream house for sale </h3></a>
-    <h4> Location : Bahria Town - Umar Block, Bahria Town - Sector B</h4>
-    <h4> Price: 1.45 Crore </h4>
-    <p>8 Marla Dream house for sale.Owner built House is available for sale.It is situated in Bahria... more </p>
-    <a href="https://beta.zameen.com/Homes/Lahore_Bahria_Town-509-1.html?city_id=1&load_all_prop=1" class="btn btn-info" role="button">View Property</a>
 
-    <hr/>
-    <br/>
-    <a href="ratingpage.html"><h3> 5 Marla Brand New House For Sale On Reasonable Price </h3></a>
-    <h4> Location : Bahria Town - Block BB, Bahria Town - Sector D</h4>
-    <h4> Price: 98 Lac </h4>
-    <p>Beautiful House Near Cricket Academy and McDonald. Gas Connection Recently Installed. House is... more</p>
-    <a href="https://beta.zameen.com/Homes/Lahore_Bahria_Town-509-1.html?city_id=1&load_all_prop=1" class="btn btn-info" role="button">View Property</a>
 
-    <hr/>
-    <br/>
-    <a href="ratingpage.html"><h3> 8 Marla Outclass And Outstanding House For Sale In Bahria Town  Usman Block </h3></a>
-    <h4> Location : Bahria Town - Block BB, Bahria Town - Sector D</h4>
-    <h4> Price: 1.75 Crore </h4>
-    <p>About The Property 4 Bedrooms 7 Washroom 2 Kitchen with Wooden Work Washrooms... more</p>
-    <a href="https://beta.zameen.com/Homes/Lahore_Bahria_Town-509-84.html?city_id=1&load_all_prop=1" class="btn btn-info" role="button">View Property</a>
 
-    <hr/>
-    <br/>
 
-    <a href="ratingpage.html"><h3> 5 Marla Brand New House For Sale On Reasonable Price </h3></a>
-    <h4> Location : Bahria Town - Block BB, Bahria Town - Sector D</h4>
-    <h4> Price: 1.48 Crore </h4>
-    <p>Beautiful House Near Cricket Academy and McDonald. Gas Connection Recently Installed. House is... more</p>
-    <a href="https://beta.zameen.com/Homes/Lahore_Bahria_Town-509-62.html?city_id=1&load_all_prop=1" class="btn btn-info" role="button">View Property</a>
 
-    <hr/>
-    <br/>
-    <a href="ratingpage.html"><h3> 8 Marla Luxury House For Sale In Bahria Town Lahore </h3></a>
-    <h4> Price: 1.85 Crore </h4>
-    <h4> Location : Bahria Town - Umar Block, Bahria Town - Sector B</h4>
-    <p>Brand New Beautiful House For VIP People In Bahria Town Lahore 4 Bed Rooms All Imported Spanish... more</p>
-    <a href="https://beta.zameen.com/Homes/Lahore_Bahria_Town-509-1.html?city_id=1&load_all_prop=1" class="btn btn-info" role="button">View Property</a>
+
+    <!--==========================
+Footer
+============================-->
+
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>2018</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+
+                Designed by <a href="https://bootstrapmade.com/">Hamza Ahmed</a>
+            </div>
+        </div>
+    </footer><!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
 </div>
 
-<div class="col-md-2"></div>
+<!--==========================
+login modal
+============================-->
+<div id="loginModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="myModalLabel">Login</h3>
+                <button type="button" id="closelogin" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+                    <div class="form-group">
+                        <a href="" class="float-right">New user?</a>
+                        <label for="uname1">Username</label>
+                        <input type="text" class="form-control form-control-lg" name="uname1" id="uname1" required="">
+                        <div class="invalid-feedback">Oops, you missed this one.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
+                        <div class="invalid-feedback">Enter your password too!</div>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="rememberMe">
+                        <label class="custom-control-label" for="rememberMe">Remember me on this computer</label>
+                    </div>
+                    <div class="form-group py-4">
+                        <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- #login -->
+
+
+<!-- JavaScript Libraries -->
+
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/superfish/hoverIntent.js"></script>
+<script src="lib/superfish/superfish.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/magnific-popup/magnific-popup.min.js"></script>
+<script src="lib/sticky/sticky.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+<!-- Contact Form JavaScript File -->
+<!--  <script src="contactform/contactform.js"></script>-->
+
+<!-- Template Main Javascript File -->
+<script src="js/main.js"></script>
+
 </body>
+
 </html>

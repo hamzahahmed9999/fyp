@@ -5,286 +5,467 @@
   Time: 9:39 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="widget.js"></script>
+    <title>InvestSmart</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="img/logo.png" rel="icon">
 
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 
-
-        #nav{backface-visibility: hidden;}
-
-
-        body{background-image:url(Images/investmentbanking.png);
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* Full-width input fields */
-        input[type=text], input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        /* Set a style for all buttons */
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        button:hover {
-            opacity: 0.8;
-        }
-
-        /* Extra styles for the cancel button */
-        .cancelbtn {
-            width: auto;
-            padding: 10px 18px;
-            background-color: #f44336;
-        }
-
-        /* Center the image and position the close button */
-        .imgcontainer {
-            text-align: center;
-            margin: 24px 0 12px 0;
-            position: relative;
-        }
-
-        img.avatar {
-            width: 40%;
-            border-radius: 50%;
-        }
-
-        .container {
-            padding: 16px;
-        }
-
-        span.psw {
-            float: right;
-            padding-top: 16px;
-        }
-
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            padding-top: 60px;
-        }
-
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
-
-        /* The Close Button (x) */
-        .close {
-            position: absolute;
-            right: 25px;
-            top: 0;
-            color: #000;
-            font-size: 35px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: red;
-            cursor: pointer;
-        }
-
-        /* Add Zoom Animation */
-        .animate {
-            -webkit-animation: animatezoom 0.6s;
-            animation: animatezoom 0.6s
-        }
-
-        @-webkit-keyframes animatezoom {
-            from {-webkit-transform: scale(0)}
-            to {-webkit-transform: scale(1)}
-        }
-
-        @keyframes animatezoom {
-            from {transform: scale(0)}
-            to {transform: scale(1)}
-        }
-
-        /* Change styles for span and cancel button on extra small screens */
-        @media screen and (max-width: 300px) {
-            span.psw {
-                display: block;
-                float: none;
-            }
-            .cancelbtn {
-                width: 100%;
-            }
-        }
-
-    </style>
-
-
-
-
-    <script type="text/javascript">
-
-        function myfunc()
-        {
-            var html=widget();
-            document.getElementById("searchbar").innerHTML=html;
-        }
-
-    </script>
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
 
 </head>
-<body onload="suggestions(),myfunc()">
 
+<body id="body">
 
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="SmartInvestment.html">SmartInvestment</a>
+<div id="insideBody">
+    <!--==========================
+    Top Bar
+  ============================-->
+    <section id="topbar" class="d-none d-lg-block">
+        <div class="container clearfix">
+            <div class="contact-info float-left">
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">ContactTeam@investsmart.com</a>
+                <i class="fa fa-phone"></i> +92 3341731677
+            </div>
+            <div class="social-links float-right">
+                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="Banking.html">Banking</a></li>
-            <li ><a href="realestateresults.html">Real Estate</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><div href="#searchedhotels.html" id="searchbar" class="input" style="margin-top: 10px;"><a href="searchedhotels.html"></a></div></li>
+    </section>
 
-            <li><a onclick="document.getElementById('id02').style.display='block'" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a onclick="document.getElementById('id01').style.display='block'" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
-    </div>
-</nav>
+    <!--==========================
+    Header
+  ============================-->
+    <header id="header">
+        <div class="container">
 
-<div >
-    <div class="col-sm-2 col-md-2"></div>
-    <div class="col-sm-8 col-md-8"  >
-        <h1 style="color: aqua; margin:35%; font-size: 500%;"><a class="glyphicon glyphicon-globe" style="color: aqua;"></a> WE HELP YOU INVEST</h1>
-    </div>
-    <div class="col-sm-2 col-md-2"></div>
+            <div id="logo" class="pull-left">
+                <h1>
+                    <a href="/">
+                        <img src="img/main-logo.png" alt="investSMART">
+                    </a>
+
+                </h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="#body">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login" data-toggle="modal">Login</a></li>
+                    <li onclick=""><a href="#signupModal" role="button" id="signupbtn" class="btn signup" >Signup</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+
+    <!--==========================
+    Intro Section
+  ============================-->
+    <section id="intro">
+
+        <div class="intro-content">
+            <h2>We help <span>you Invest!</span></h2>
+            <div>
+                <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>
+            </div>
+        </div>
+
+        <div id="intro-carousel" class="owl-carousel">
+            <div class="item" style="background-image: url('img/Investment.jpg');"></div>
+        </div>
+
+    </section><!-- #intro -->
+
+    <main id="main">
+
+        <!--==========================
+      About Section
+    ============================-->
+        <section id="about" class="wow fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 about-img">
+                        <img src="img/about-img.jpg" alt="">
+                    </div>
+
+                    <div class="col-lg-6 content">
+                        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
+                        <h3>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+
+                        <ul>
+                            <li><i class="ion-android-checkmark-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                            <li><i class="ion-android-checkmark-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                            <li><i class="ion-android-checkmark-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- #about -->
+
+        <!--==========================
+      Services Section
+    ============================-->
+        <section id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Services</h2>
+                    <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInLeft">
+                            <div class="icon"><i class="fa fa-bar-chart"></i></div>
+                            <h4 class="title"><a href="">Business Growth</a></h4>
+                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident etiro rabeta lingo.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInRight">
+                            <div class="icon"><i class="fa fa-picture-o"></i></div>
+                            <h4 class="title"><a href="">Dolor Sitema</a></h4>
+                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata nodera clas.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInLeft" data-wow-delay="0.2s">
+                            <div class="icon"><i class="fa fa-shopping-bag"></i></div>
+                            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur trinige zareta lobur trade.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInRight" data-wow-delay="0.2s">
+                            <div class="icon"><i class="fa fa-map"></i></div>
+                            <h4 class="title"><a href="">Magni Dolores</a></h4>
+                            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum rideta zanox satirente madera</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- #services -->
+
+        <!--==========================
+      Clients Section
+    ============================-->
+        <section id="clients" class="wow fadeInUp">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Clients</h2>
+                    <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
+                </div>
+
+                <div class="owl-carousel clients-carousel">
+                    <img src="img/clients/client-1.png" alt="">
+                    <img src="img/clients/client-2.png" alt="">
+                    <img src="img/clients/client-3.png" alt="">
+                    <img src="img/clients/client-4.png" alt="">
+                    <img src="img/clients/client-5.png" alt="">
+                    <img src="img/clients/client-6.png" alt="">
+                    <img src="img/clients/client-7.png" alt="">
+                    <img src="img/clients/client-8.png" alt="">
+                </div>
+
+            </div>
+        </section><!-- #clients -->
+
+
+        <!--==========================
+      Call To Action Section
+    ============================-->
+        <section id="call-to-action" class="wow fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 text-center text-lg-left">
+                        <h3 class="cta-title">Call To Action</h3>
+                        <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="col-lg-3 cta-btn-container text-center">
+                        <a class="cta-btn align-middle" href="#">Call To Action</a>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- #call-to-action -->
+
+        <!--==========================
+      Our Team Section
+    ============================-->
+        <section id="team" class="wow fadeInUp">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Team</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="member">
+                            <div class="pic"><img src="img/team-1.jpg" alt=""></div>
+                            <div class="details">
+                                <h4>Walter White</h4>
+                                <span>Chief Executive Officer</span>
+                                <div class="social">
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                    <a href=""><i class="fa fa-facebook"></i></a>
+                                    <a href=""><i class="fa fa-google-plus"></i></a>
+                                    <a href=""><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="member">
+                            <div class="pic"><img src="img/team-2.jpg" alt=""></div>
+                            <div class="details">
+                                <h4>Sarah Jhinson</h4>
+                                <span>Product Manager</span>
+                                <div class="social">
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                    <a href=""><i class="fa fa-facebook"></i></a>
+                                    <a href=""><i class="fa fa-google-plus"></i></a>
+                                    <a href=""><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="member">
+                            <div class="pic"><img src="img/team-3.jpg" alt=""></div>
+                            <div class="details">
+                                <h4>William Anderson</h4>
+                                <span>CTO</span>
+                                <div class="social">
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                    <a href=""><i class="fa fa-facebook"></i></a>
+                                    <a href=""><i class="fa fa-google-plus"></i></a>
+                                    <a href=""><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="member">
+                            <div class="pic"><img src="img/team-4.jpg" alt=""></div>
+                            <div class="details">
+                                <h4>Amanda Jepson</h4>
+                                <span>Accountant</span>
+                                <div class="social">
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                    <a href=""><i class="fa fa-facebook"></i></a>
+                                    <a href=""><i class="fa fa-google-plus"></i></a>
+                                    <a href=""><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- #team -->
+
+        <!--==========================
+      Contact Section
+    ============================-->
+        <section id="contact" class="wow fadeInUp">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Contact Us</h2>
+                    <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
+                </div>
+
+                <div class="row contact-info">
+
+                    <div class="col-md-4">
+                        <div class="contact-address">
+                            <i class="ion-ios-location-outline"></i>
+                            <h3>Address</h3>
+                            <address>A108 Adam Street, NY 535022, USA</address>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-phone">
+                            <i class="ion-ios-telephone-outline"></i>
+                            <h3>Phone Number</h3>
+                            <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-email">
+                            <i class="ion-ios-email-outline"></i>
+                            <h3>Email</h3>
+                            <p><a href="mailto:info@example.com">info@example.com</a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
+
+            <div class="container">
+                <div class="form">
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+                    <form action="" method="post" role="form" class="contactForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validation"></div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div>
+
+            </div>
+        </section><!-- #contact -->
+
+    </main>
+
+    <!--==========================
+    Footer
+  ============================-->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>2018</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+
+                Designed by <a href="https://bootstrapmade.com/">Hussain Haider</a>
+            </div>
+        </div>
+    </footer><!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
 </div>
 
-<div>
-
-
-    <div id="id01" class="modal" style="display: block">
-
-        <form method="post" class="modal-content animate" action="/Signin">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <a class="glyphicon glyphicon-user"></a>
+<!--==========================
+login modal
+============================-->
+<div id="loginModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true"  aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="myModalLabel">Login</h3>
+                <button type="button" id="closelogin" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-
-            <div class="container" style="display: block; width: inherit;">
-
-
-                <div><label for="uname"><b>Username</b></label></div>
-                <div><input id=uemailsi style="width:80%; position: relative;" type="text" placeholder="Enter Username" name="uemailsi" required></div>
-
-
-                <div><label for="psw"><b>Password</b></label></div>
-                <div><input id="upassi" class="container" style="width: 80%;position: relative;" type="password" placeholder="Enter Password" name="upassi" required></div>
-
-                <button style="width: 80%;position: relative;" type="submit">Login</button>
-                <div><label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label></div>
+            <div class="modal-body">
+                <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST" action="Signin">
+                    <div class="form-group">
+                        <a href="" class="float-right">New user?</a>
+                        <label  for="uemailsi">Username</label>
+                        <input id="uemailsi" name="uemailsi" type="text" class="form-control form-control-lg" required="">
+                        <div class="invalid-feedback">Oops, you missed this one.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input id="upassi" name="upassi" type="password" class="form-control form-control-lg" required="" autocomplete="new-password">
+                        <div class="invalid-feedback">Enter your password too!</div>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="rememberMe">
+                        <label class="custom-control-label" for="rememberMe">Remember me on this computer</label>
+                    </div>
+                    <div class="form-group py-4">
+                        <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
+                    </div>
+                </form>
             </div>
-
-            <div class="container" style="background-color:#f1f1f1;width:80%; position: relative;">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-        </form>
+        </div>
     </div>
-
-    <script>
-        // Get the modal
-        var modal = document.getElementById('id01');
-        var modal2 = document.getElementById('id02');
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-
-            if (event.target == modal2) {         //for modal 2
-                modal.style.display = "none";
-            }
-        }
-    </script>
-
-</div>
-<div>
-
-
-    <div id="id02" class="modal" style="display: block;">
-
-        <form method="post" class="modal-content animate" action="/Signup">
-
-            <div class="container" style="display: block">
-                <div><label  id="u"><b>Username</b></label></div>
-                <div><input style="width:80%; position: relative;" id="uname" type="text" placeholder="Enter Username" name="uname" required></div>
-
-                <div><label id="p"><b>Password</b></label></div>
-                <div><input style="width:80%; position: relative;" id="upassword" type="password" placeholder="Enter Password" name="upassword" required></div>
-
-
-                <div><label ><b>EMAIL</b></label></div>
-                <div><input style="width:80%; position: relative;" id=uemail type="text" placeholder="Enter EMAIL" name="uemail" required></div>
-
-                <div><label ><b>Contact Number</b></label></div>
-                <div><input style="width:80%; position: relative;" id=ucontactnumber type="text" placeholder="Enter EMAIL" name="ucontactnumber" required></div>
-
-
-                <div><button style="width:80%; position: relative;" type="submit">Login</button></div>
-                <div><label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label></div>
-            </div>
-
-            <div style="width:80%; position: relative;" class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-            </div>
-        </form>
-    </div>
+</div><!-- #login -->
 
 
 
-</div>
-<div></div>
-<div></div>
-<div></div>
+
+
+
+
+
+
+
+
+<!-- JavaScript Libraries -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/superfish/hoverIntent.js"></script>
+<script src="lib/superfish/superfish.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/magnific-popup/magnific-popup.min.js"></script>
+<script src="lib/sticky/sticky.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+<!-- Contact Form JavaScript File -->
+<!--  <script src="contactform/contactform.js"></script>-->
+
+<!-- Template Main Javascript File -->
+<script src="js/main.js"></script>
+
 </body>
+
 </html>

@@ -37,13 +37,14 @@ public class Signup extends HttpServlet {
             try{
                 User newuser=new User(name,email,contact,"","",password);
                 newuser.signup();
-                RequestDispatcher rd=req.getRequestDispatcher("loginform.jsp");
+                RequestDispatcher rd=req.getRequestDispatcher("Banking.jsp");
                 req.setAttribute("message",response);
                 rd.forward(req,resp);
 
             }
             catch(SQLException e)
             {
+
             }
         }
         else

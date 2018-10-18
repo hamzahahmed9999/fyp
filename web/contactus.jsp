@@ -72,12 +72,12 @@
 </nav>
 
 <div class="container">
-    <form action="/action_page.php">
+    <form action="/contactservlet" method="post">
         <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <input type="text" id="fname" name="fname" placeholder="Your name..">
 
         <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <input type="text" id="lname" name="lname" placeholder="Your last name..">
 
         <label for="country">City</label>
         <select id="country" name="country">
@@ -88,7 +88,7 @@
 
 
         <label for="subject">Contact Number</label>
-        <input type="text" id="cntnumber" name="firstname" placeholder="Your number..">
+        <input type="text" id="cntnumber" name="cntnumber" placeholder="Your number..">
 
         <label for="subject">Subject</label>
         <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
