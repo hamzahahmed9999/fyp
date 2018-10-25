@@ -79,14 +79,11 @@
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="#body">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#clients">Clients</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="menu-active"><a href="SignupSignin.jsp">Home</a></li>
+                    <li><a href="Banking.jsp">Banking</a></li>
+                    <li><a href="">Real Estate</a></li>
                     <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login" data-toggle="modal">Login</a></li>
-                    <li onclick=""><a href="#signupModal" role="button" id="signupbtn" class="btn signup" >Signup</a></li>
+                    <li onclick=""><a href="Signup.jsp" role="button" id="signupbtn" class="btn signup" >Signup</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>

@@ -22,6 +22,10 @@ public class Signup extends HttpServlet {
         String name=req.getParameter("uname");
         String email=req.getParameter("uemail");
         String password=req.getParameter("upassword");
+        String cpassword=req.getParameter("cpassword");
+        String dob=req.getParameter("udob");
+        String gender=req.getParameter("ugender");
+        String city=req.getParameter("ucity");
         String contact=req.getParameter("ucontactnumber");
         String response="";
 
@@ -35,7 +39,7 @@ public class Signup extends HttpServlet {
             System.out.println("done");
             response="Signup successfull";
             try{
-                User newuser=new User(name,email,contact,"","",password);
+                User newuser=new User(name,email,contact,"","",password,gender,city,dob);
                 newuser.signup();
                 RequestDispatcher rd=req.getRequestDispatcher("Banking.jsp");
                 req.setAttribute("message",response);

@@ -13,12 +13,12 @@ public class realestatedata {
         System.out.println("getting hotels");
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/trips","root", null);
+            Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/investsmart","root", null);
 
 //            int result1 = Integer.valueOf(mobile);
 //            int result2 = Integer.valueOf(age);
             System.out.println("Hello1");
-            sqlquery="SELECT c1, c2, price, location, size, title, description, pagination, pagination-href FROM table 11 WHERE size='5 Marla'";
+            sqlquery="SELECT `c1`, `c2`, `price`, `location`, `size`, `title`, `description`, `pagination`, `pagination-href` FROM realestatedata WHERE size='5 Marla'";
             PreparedStatement st= conn.prepareStatement(sqlquery);
             System.out.println("prepared hotel query");
 

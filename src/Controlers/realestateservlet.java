@@ -32,9 +32,12 @@ public class realestateservlet extends HttpServlet {
 
         }
 
+        System.out.println("gothere");
+
         req.getSession().setAttribute("comingrealestate", datacoming);
         req.setAttribute("myrealestate",datacoming);
         req.setAttribute("message",message);
+        System.out.println("gothere1");
         req.getRequestDispatcher("RealEstate.jsp").forward(req, resp);
 
     }

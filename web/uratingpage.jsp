@@ -1,8 +1,8 @@
-<%@ page import="Business_Layer.Realestate" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
-  Date: 6/5/2018
-  Time: 11:39 PM
+  Date: 10/19/2018
+  Time: 6:10 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -54,8 +54,23 @@
 
 
 
+        function sendreview() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange=function() {
+                if (this.readyState == 4 && this.status == 200) {
 
-        function sendrating1(area) {
+
+                    document.getElementById("").innerHTML = xhttp.responseText;
+                }
+            };
+
+            var reviewarea="?reviewarea="+document.getElementById("reviewarea").toString();
+            var type="type=review";
+            xhttp.open("POST", "/ratingservlet"+reviewarea+"&"+type, true);
+            xhttp.send();
+        }
+
+        function sendrating1() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange=function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -66,13 +81,12 @@
             };
             var rating1="?rating=1";
             var type="type=rating";
-            var areaid="&areaid="+area;
-            xhttp.open("POST", "/ratingservlet"+rating1+"&"+type+areaid, true);
+            xhttp.open("POST", "/ratingservlet"+rating1+"&"+type, true);
             xhttp.send();
         }
 
 
-        function sendrating2(area) {
+        function sendrating2() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange=function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -81,14 +95,13 @@
                     document.getElementById("result1").innerHTML = xhttp.responseText;
                 }
             };
-            var areaid="&areaid="+area;
             var rating2="?rating=2";
             var type="type=rating";
-            xhttp.open("POST", "/ratingservlet"+rating2+"&"+type+areaid, true);
+            xhttp.open("POST", "/ratingservlet"+rating2+"&"+type, true);
             xhttp.send();
         }
 
-        function sendrating3(area) {
+        function sendrating3() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange=function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -97,14 +110,13 @@
                     document.getElementById("result1").innerHTML = xhttp.responseText;
                 }
             };
-            var areaid="&areaid="+area;
             var rating3="?rating=3";
             var type="type=rating";
-            xhttp.open("POST", "/ratingservlet"+rating3+"&"+type+areaid, true);
+            xhttp.open("POST", "/ratingservlet"+rating3+"&"+type, true);
             xhttp.send();
         }
 
-        function sendrating4(area) {
+        function sendrating4() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange=function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -113,14 +125,13 @@
                     document.getElementById("result1").innerHTML = xhttp.responseText;
                 }
             };
-            var areaid="&areaid="+area;
             var rating4="?rating=4";
             var type="type=rating";
-            xhttp.open("POST", "/ratingservlet"+rating4+"&"+type+areaid, true);
+            xhttp.open("POST", "/ratingservlet"+rating4+"&"+type, true);
             xhttp.send();
         }
 
-        function sendrating5(area) {
+        function sendrating5() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange=function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -129,10 +140,9 @@
                     document.getElementById("result1").innerHTML = xhttp.responseText;
                 }
             };
-            var areaid="&areaid="+area;
             var rating5="?rating=5";
             var type="type=rating";
-            xhttp.open("POST", "/ratingservlet"+rating5+"&"+type+areaid, true);
+            xhttp.open("POST", "/ratingservlet"+rating5+"&"+type, true);
             xhttp.send();
         }
 
@@ -195,13 +205,12 @@ Header
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li ><a href="#body">Home</a></li>
-                    <li><a href="Banking.jsp">Plans</a></li>
-                    <li class="menu-active"><a href="">Real Estate</a></li>
-                    <li><a href="Userprofile.jsp">Profile</a></li>
-                    <li><a href="contactus.jsp">Contact</a></li>
-
-                    <li><a href="#" class="btn signup">Logout</a></li>
+                    <li class="menu-active"><a href="#body">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login" data-toggle="modal">Login</a></li>
                     <li><a href="#" class="btn signup">Signup</a></li>
                 </ul>
@@ -210,14 +219,7 @@ Header
     </header><!-- #header -->
 
 
-<%
 
-
-    Realestate obj=(Realestate) request.getAttribute("showproperty");
-
-
-
-%>
 
     <div class="container">
         <div class="row" style="margin: 2% 0%;">
@@ -240,67 +242,68 @@ Header
                             </div>
                             <div class="row" id="PricingDetials">
                                 <div class="col-sm-4">
-                                    <h3 style="margin-top: 4%;">Rs <%=obj.getPrice()%></h3>
+                                    <h3 style="margin-top: 4%;">Rs 1.45 Crore</h3>
                                 </div>
                                 <div class="col-sm-4">
-                                    <h3 style="margin-top: 4%;"><%=obj.getSize()%></h3>
+                                    <h3 style="margin-top: 4%;">8 in marla</h3>
 
                                 </div>
                                 <div class="col-sm-4">
-                                    <h3><%=obj.getLocation()%></h3>
+                                    <h3>Umar Block, Bahria Town - Sector B</h3>
                                 </div>
                             </div>
                         </div>
+                        <form>
+                            <div class="col-sm-12">
+
+                                <div class="reviewDiv">
+
+                                    <h2 style="font-weight: bold;">Property Overview</h2>
+                                    <p>Having a home of your choice is the ultimate blessing.
+                                        Well, that blessing may be yours sooner rather than later, because a 1 Kanal House is available for sale. Located in DHA Phase 6 Lahore, the House will surely fulfill your requirements. </p>
 
 
 
-                        <div class="col-sm-12">
+                                    <h2 style="font-weight: bold;margin-bottom: 0px;">Your Review</h2>
+                                    <label class="control-label" for="rating">
+                                        <span class="field-label-info"></span>
+                                        <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+                                    </label>
 
-                            <div class="reviewDiv">
+                                    <div class="row" id="ratingStar">
 
-                                <h2 style="font-weight: bold;">Property Overview</h2>
-                                <p><%=obj.getDescription()%> </p>
+                                        <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5" style="margin-right: 5%;">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </button>
 
-
-
-                                <h2 style="font-weight: bold;margin-bottom: 0px;">Your Review</h2>
-                                <label class="control-label" for="selected_rating">
-                                    <span class="field-label-info"></span>
-                                    <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
-                                </label>
-
-                                <div class="row" id="ratingStar">
-
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating1(<%=obj.getC1()%>)" data-attr="1" id="rating-star-1">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating2(<%=obj.getC1()%>)" data-attr="2" id="rating-star-2">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating3(<%=obj.getC1()%>)" data-attr="3" id="rating-star-3">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating4(<%=obj.getC1()%>)" data-attr="4" id="rating-star-4">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating5(<%=obj.getC1()%>)" data-attr="5" id="rating-star-5" style="margin-right: 5%;">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </button>
-
-                                    <h2 class="bold rating-header" style="margin-bottom: 0px;">
-                                        <span class="selected-rating">0</span><small> / 5</small>
-                                    </h2>
+                                        <h2 class="bold rating-header" style="margin-bottom: 0px;">
+                                            <span class="selected-rating">0</span><small> / 5</small>
+                                        </h2>
 
 
+
+                                    </div>
+
+                                    <div><textarea name="reviewarea" id="reviewarea" rows="4" style="width: 50%;"></textarea></div>
+                                    <div><input id="givereview" class="btn btn-success" style="margin-top:5px" onclick="sendreview()" type="button" value="Give Review"></div>
 
                                 </div>
 
-                                <div><textarea id="reviewarea" name="reviewarea"  rows="4" style="width: 50%;"></textarea></div>
-                                <div><input id="givereview" class="btn btn-success" style="margin-top:5px" onclick="sendreview(<%=obj.getC1()%>)" type="button" value="Give Review"></div>
+                                <span id="result1"></span>
                             </div>
-
-
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -386,41 +389,10 @@ login modal
 <!-- Contact Form JavaScript File -->
 <!--  <script src="contactform/contactform.js"></script>-->
 
-<script>
-
-    function sendreview(id) {
-        alert("in review")
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange=function() {
-            if (this.readyState == 4 && this.status == 200) {
-
-
-                document.getElementById("").innerHTML = xhttp.responseText;
-            }
-        };
-
-        alert("in review")
-        var ra=document.getElementById("reviewarea").value;
-        alert(ra);
-        var reviewarea="?reviewarea="+ra;
-        var areaid="&areaid="+id;
-        var type="type=review";
-        alert(reviewarea);
-        alert(areaid);
-        xhttp.open("POST", "/ratingservlet"+reviewarea+"&"+type+areaid, true);
-        xhttp.send();
-    }
-
-
-
-
-</script>
-
-
-
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>
 
 </body>
 
 </html>
+

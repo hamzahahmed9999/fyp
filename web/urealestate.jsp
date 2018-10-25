@@ -1,8 +1,9 @@
-<%--
+<%@ page import="Business_Layer.Realestate" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
-  Date: 6/5/2018
-  Time: 3:54 PM
+  Date: 10/19/2018
+  Time: 6:09 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,8 +21,7 @@
 
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
     <!-- Bootstrap CSS File -->
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,6 +37,28 @@
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet">
 
+
+
+    <script type="text/javascript">
+
+        function post(path, plot, method) {
+            method = method || "post"; // Set method to post by default if not specified.
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+            form.setAttribute("propertyobj",plot);
+
+
+            form.submit();
+        }
+
+
+
+    </script>
+
 </head>
 
 <body id="body">
@@ -48,8 +70,8 @@ Top Bar
     <section id="topbar" class="d-none d-lg-block">
         <div class="container clearfix">
             <div class="contact-info float-left">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="fa fa-phone"></i> +1 5589 55488 55
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">HR@investsmart.com</a>
+                <i class="fa fa-phone"></i> +92 3341731677
             </div>
             <div class="social-links float-right">
                 <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -81,11 +103,11 @@ Header
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="#body">Home</a></li>
-                    <li><a href="Banking.jsp">Plans</a></li>
-                    <li><a href="">Real Estate</a></li>
-                    <li><a href="Userprofile.jsp">Profile</a></li>
-                    <li><a href="contactus.jsp">Contact</a></li>
-
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#" class="btn signup">Logout</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
@@ -94,62 +116,111 @@ Header
 
 
 
-    <form method="post" action="/addpreferencesservlet">
-        <div class="container" style="margin-top: 2%;margin-bottom: 2%;">
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-bank"></a> Banking Preferences</h2>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="IR">Investment Range</label>
-                        <input type="text" class="form-control" id="IR" placeholder="enter number">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-briefcase"></a> Real Estate Preferences</h2>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" placeholder="Enter City">
-                    </div>
-                    <div class="form-group">
-                        <label for="Area">Area</label>
-                        <input type="text" class="form-control" id="Area" placeholder="Enter Area">
-                    </div>
-                    <div class="form-group">
-                        <label for="Size">Size</label>
-                        <input type="text" class="form-control" id="Size" placeholder="Enter Size">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-home"></a> House (Not Mandaotry)</h2>
-                    </div>
-                    <div class="form-group">
-                        <label for="stories">Stories</label>
-                        <input type="text" class="form-control" id="stories" placeholder="">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Bedrooms">Bedrooms</label>
-                        <input type="text" class="form-control" id="bedrooms" placeholder="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <button class="btn btn-success">Submit</button>
-                </div>
-            </div>
-        </div>
+    <h2 style="text-align: center;margin-top: 100px">City Location Name</h2>
+    <form class="form-inline" id="searchform" style="margin-left: 38%;">
+        <input type="text" class="form-control input-lg" id="myInput" placeholder="Click here">
+        <button type="button" class="btn btn-default" style="margin-left: 5px;">Search</button>
     </form>
 
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3" id="sidebar">
+                <div class="list-group">
+
+                    <label for="customRange2"><h3 style="margin-bottom: 0px;">Price</h3></label>
+                    <input type="range" class="custom-range" min="0" max="5" id="customRange2">
+                    <div style="display: flex;flex-direction: row;margin-top: 3%;">
+                        <p>Min:Rs 0</p>
+                        <p style="margin-left:50%">Max:Rs 5</p>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-sm-9">
+
+                <div class="container-fluid">
+                    <%
+
+                        ArrayList<Realestate> recievedrealestate=(ArrayList<Realestate>) (request.getAttribute("myrealestate"));
+
+
+
+                        if(!recievedrealestate.isEmpty())
+                        {
+                            for(int i=0;i<recievedrealestate.size();i++)
+                            {
+
+
+
+                    %>
+                    <div class="row" id="group" style="border-top: 1px solid #E5E5E5;margin-bottom: 10px">
+
+                        <div class="col-sm-4" style="padding: 10px">
+                            <img src="http://i.stack.imgur.com/25Rl3.jpg" class="img-rounded" alt="Cinq Tre" width="100%" height="50%">
+                        </div>
+                        <div class="col-sm-4" style="border-right: 1px solid #a6a6a6;margin-top: 2%;margin-bottom: 2%;width: 100%">
+                            <h3 style="font-family: 'Roboto Mono', monospace;"><%=recievedrealestate.get(i).getTitle()%></h3>
+                            <h3 style="text-align: right"><b>PKR</b> <%=recievedrealestate.get(i).getPrice()%>  </h3>
+                            <a class="btn btn-success btn-lg reviewLink" onclick="post('ratingservlet','POST')">View Deals</a>
+                            <input type="hidden">
+                        </div>
+
+                        <div class="col-sm-4" style="margin-top: 5%">
+                            <p>72 reviews</p>
+                            <p><b>Location :</b> <%=recievedrealestate.get(i).getLocation()%></p>
+                        </div>
+
+
+                        <!--</ng-container>-->
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                    <div class="row">
+                        <div class="col-12" class="pagination" style="margin-top: 5%">
+
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">6</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">7</a></li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -160,6 +231,7 @@ Header
     <!--==========================
 Footer
 ============================-->
+
     <footer id="footer">
         <div class="container">
             <div class="copyright">
@@ -167,7 +239,7 @@ Footer
             </div>
             <div class="credits">
 
-                Designed by <a href="https://bootstrapmade.com/">Hussain Haider</a>
+                Designed by <a href="https://bootstrapmade.com/">Hamza Ahmed</a>
             </div>
         </div>
     </footer><!-- #footer -->
@@ -196,8 +268,7 @@ login modal
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control form-control-lg" id="pwd1" required=""
-                               autocomplete="new-password">
+                        <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
                         <div class="invalid-feedback">Enter your password too!</div>
                     </div>
                     <div class="custom-control custom-checkbox">
@@ -205,7 +276,7 @@ login modal
                         <label class="custom-control-label" for="rememberMe">Remember me on this computer</label>
                     </div>
                     <div class="form-group py-4">
-                        <button class="btn btn-outline-secondary btn-lg">Cancel</button>
+                        <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Cancel</button>
                         <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
                     </div>
                 </form>
@@ -216,6 +287,7 @@ login modal
 
 
 <!-- JavaScript Libraries -->
+
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="lib/jquery/jquery-migrate.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
@@ -236,3 +308,4 @@ login modal
 </body>
 
 </html>
+

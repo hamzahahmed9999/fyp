@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
-  Date: 6/5/2018
-  Time: 3:54 PM
+  Date: 10/18/2018
+  Time: 8:48 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,8 +20,7 @@
 
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
     <!-- Bootstrap CSS File -->
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,6 +36,7 @@
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet">
 
+
 </head>
 
 <body id="body">
@@ -48,8 +48,8 @@ Top Bar
     <section id="topbar" class="d-none d-lg-block">
         <div class="container clearfix">
             <div class="contact-info float-left">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="fa fa-phone"></i> +1 5589 55488 55
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">HR@investsmart.com</a>
+                <i class="fa fa-phone"></i> +92 3341731677
             </div>
             <div class="social-links float-right">
                 <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -78,77 +78,143 @@ Header
                 <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
             </div>
 
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="#body">Home</a></li>
-                    <li><a href="Banking.jsp">Plans</a></li>
-                    <li><a href="">Real Estate</a></li>
-                    <li><a href="Userprofile.jsp">Profile</a></li>
-                    <li><a href="contactus.jsp">Contact</a></li>
+            <form id="selectionform" name="selectionform" method="post">
 
-                    <li><a href="#" class="btn signup">Logout</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li ><a href="#body">Home</a></li>
+                        <li><a href="Banking.jsp">Plans</a></li>
+                        <li><a onclick="desiredpage()" href="">Real Estate</a></li>
+                        <li><a href="Userprofile.jsp" class="menu-active">Profile</a></li>
+                        <li  ><a href="contactus.jsp">Contact</a></li>
+
+                        <li><a href="#" class="btn signup">Logout</a></li>
+
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+
+
+
+            </form>
+
         </div>
     </header><!-- #header -->
 
 
 
-    <form method="post" action="/addpreferencesservlet">
-        <div class="container" style="margin-top: 2%;margin-bottom: 2%;">
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-bank"></a> Banking Preferences</h2>
+
+    <div id="home" class="container" style="box-shadow: 0px 2px 30px rgba(0,0,0,0.30);margin-top: 2%;
+        margin-bottom: 2%;">
+        <div class="row" style="padding:2%">
+            <div class="col-xs-12 col-sm-3 center">
+                    <span class="profile-picture">
+                        <img class="editable img-responsive" alt=" Avatar" id="avatar2" src="http://bootdey.com/img/Content/avatar/avatar6.png">
+                    </span>
+
+                <div class="space space-4"></div>
+
+                <a href="./userProfile.html" class="btn btn-sm btn-block btn-success">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span class="bigger-110">Update Profile</span>
+                </a>
+            </div><!-- /.col -->
+
+            <div class="col-xs-12 col-sm-9">
+                <h4 class="blue">
+                    <span class="middle">John Doe</span>
+                </h4>
+
+                <div class="profile-user-info">
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Username </div>
+
+                        <div class="profile-info-value">
+                            <input id="username" name="username" placeholder="Username" class="form-control" type="text">
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="IR">Investment Range</label>
-                        <input type="text" class="form-control" id="IR" placeholder="enter number">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-briefcase"></a> Real Estate Preferences</h2>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" placeholder="Enter City">
-                    </div>
-                    <div class="form-group">
-                        <label for="Area">Area</label>
-                        <input type="text" class="form-control" id="Area" placeholder="Enter Area">
-                    </div>
-                    <div class="form-group">
-                        <label for="Size">Size</label>
-                        <input type="text" class="form-control" id="Size" placeholder="Enter Size">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-home"></a> House (Not Mandaotry)</h2>
-                    </div>
-                    <div class="form-group">
-                        <label for="stories">Stories</label>
-                        <input type="text" class="form-control" id="stories" placeholder="">
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Location </div>
+
+                        <div class="profile-info-value">
+                            <input id="location" name="location" placeholder="location" class="form-control" type="text">
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="Bedrooms">Bedrooms</label>
-                        <input type="text" class="form-control" id="bedrooms" placeholder="">
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Age </div>
+
+                        <div class="profile-info-value">
+                            <input id="age" name="age" placeholder="Age" class="form-control" type="number">
+                        </div>
                     </div>
+
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Joined </div>
+
+                        <div class="profile-info-value">
+                            <input id="date" name="date" placeholder="Date" class="form-control" type="date">
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <button class="btn btn-success">Submit</button>
+
+                <div class="hr hr-8 dotted"></div>
+
+                <!-- <div class="profile-user-info">
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Website </div>
+
+                        <div class="profile-info-value">
+                            <a href="#" target="_blank">www.alexdoe.com</a>
+                        </div>
+                    </div>
+
+                    <div class="profile-info-row">
+                        <div class="profile-info-name">
+                            <i class="middle ace-icon fa fa-facebook-square bigger-150 blue"></i>
+                        </div>
+
+                        <div class="profile-info-value">
+                            <a href="#">Find me on Facebook</a>
+                        </div>
+                    </div>
+
+                    <div class="profile-info-row">
+                        <div class="profile-info-name">
+                            <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
+                        </div>
+
+                        <div class="profile-info-value">
+                            <a href="#">Follow me on Twitter</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+
+        <div class="space-20"></div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="widget-box transparent">
+                    <div class="widget-header widget-header-small">
+                        <h4 class="widget-title smaller">
+                            <i class="ace-icon fa fa-check-square-o bigger-110"></i>
+                            Little About Me
+                        </h4>
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <br>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div><!-- /#home -->
 
 
 
@@ -196,8 +262,7 @@ login modal
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control form-control-lg" id="pwd1" required=""
-                               autocomplete="new-password">
+                        <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
                         <div class="invalid-feedback">Enter your password too!</div>
                     </div>
                     <div class="custom-control custom-checkbox">
@@ -205,7 +270,7 @@ login modal
                         <label class="custom-control-label" for="rememberMe">Remember me on this computer</label>
                     </div>
                     <div class="form-group py-4">
-                        <button class="btn btn-outline-secondary btn-lg">Cancel</button>
+                        <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Cancel</button>
                         <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
                     </div>
                 </form>
@@ -232,6 +297,19 @@ login modal
 
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>
+
+
+<script type="text/javascript">
+    function desiredpage() {
+        alert("came in function");
+        document.getElementById("selectionform").action="/edituserprofileservlet?desire=realestate";
+        document.getElementById("selectionform").submit();
+    }
+
+</script>
+
+
+
 
 </body>
 

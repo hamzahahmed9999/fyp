@@ -1,8 +1,11 @@
 package Controlers;
 
+import Business_Layer.Propertyplan;
+import Business_Layer.Realestate;
 import Business_Layer.User;
 import Business_Layer.ratingb;
 
+import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,40 +24,52 @@ public class ratingservlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User currentuser=new User();
+        User currentuser=(User) req.getSession(true).getAttribute("signedinuser");
+
+        System.out.println(currentuser.getName());
         System.out.println("in post");
         resp.setContentType("text/plain");
         String type=req.getParameter("type").toString();
-        if(type=="review")
+
+        if(type.matches("review"))
         {
+            String areaid=req.getParameter("areaid");
+            System.out.println(" in review");
             String reviewarea=req.getParameter("reviewarea").toString();
             ratingb businesslayerpasser=new ratingb();
 
-            businesslayerpasser.givereviewb(reviewarea,currentuser);
+            businesslayerpasser.givereviewb(reviewarea,areaid,currentuser);
 
 
         }
-        else if(type=="rating")
+        else if(type.matches("rating"))
         {
+            String areaid=req.getParameter("areaid");
             int rating=Integer.parseInt(req.getParameter("rating").toString());
             ratingb businesslayerpasser=new ratingb();
 
-            businesslayerpasser.giveratingb(rating,currentuser);
+            businesslayerpasser.giveratingb(rating,areaid,currentuser);
 
         }
-        else if(type=="wish")
+        else if(type.matches("wish"))
         {
             String PID=req.getParameter("PID").toString();
             ratingb businesslayerpasser=new ratingb();
 
             businesslayerpasser.givewishb(PID,currentuser);
         }
+        else if(type.matches("show"))
+        {
+            String id=req.getParameter("id");
+            System.out.println("inshow");
+            ratingb temp=new ratingb();
+            Realestate obj=temp.bringpage(id);
+            RequestDispatcher rd=req.getRequestDispatcher("ratingpage.jsp");
+            req.setAttribute("showproperty",obj);
+            System.out.println("about to send");
+            rd.forward(req,resp);
 
-
-
-        RequestDispatcher rd=req.getRequestDispatcher("ratingpage.jsp");
-        req.setAttribute("name","");
-        rd.forward(req,resp);
+        }
 
 
     }

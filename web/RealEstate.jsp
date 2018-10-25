@@ -42,6 +42,25 @@
 
 
 
+    <script type="text/javascript">
+
+        function post(path, plot, method) {
+            method = method || "post"; // Set method to post by default if not specified.
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+            form.setAttribute("propertyobj",plot);
+
+
+            form.submit();
+        }
+
+
+
+    </script>
 
 </head>
 
@@ -125,41 +144,55 @@ Header
 
                 </div>
             </div>
+
+
+
+
+
             <div class="col-sm-9">
-
-                <%
-
-                    ArrayList<Realestate> recievedrealestate=(ArrayList<Realestate>) (request.getAttribute("comingrealestate"));
-
-
-
-                    if(!recievedrealestate.isEmpty())
-                    {
-                    for(int i=0;i<recievedrealestate.size();i++)
-                    {
-
-
-                %>
 
 
                 <div class="container-fluid">
+                    <%
+
+                        ArrayList<Realestate> recievedrealestate=(ArrayList<Realestate>) (request.getAttribute("myrealestate"));
+
+
+
+                        if(!recievedrealestate.isEmpty())
+                        {
+                            for(int i=0;i<3;i++)
+                            {
+                                String ID=recievedrealestate.get(i).getC1();
+
+
+                    %>
+                    <form id="divform_<%= ID %>" method="post">
                     <div class="row" id="group" style="border-top: 1px solid #E5E5E5;margin-bottom: 10px">
 
                         <div class="col-sm-4" style="padding: 10px">
-                            <img src="http://i.stack.imgur.com/25Rl3.jpg" class="img-rounded" alt="Cinq Tre" width="100%" height="100%">
+                            <img src="http://i.stack.imgur.com/25Rl3.jpg" class="img-rounded" alt="Cinq Tre" width="100%" height="50%">
                         </div>
                         <div class="col-sm-4" style="border-right: 1px solid #a6a6a6;margin-top: 2%;margin-bottom: 2%;width: 100%">
-                            <h3 style="font-family: 'Roboto Mono', monospace;"><%recievedrealestate.get(i).getTitle(); %></h3>
-                            <h3 style="text-align: right"><b>PKR</b> <% recievedrealestate.get(i).getPrice(); %>  </h3>
-                            <a class="btn btn-success btn-lg reviewLink">View Deals</a>
+                            <h3 style="font-family: 'Roboto Mono', monospace;"><%=recievedrealestate.get(i).getTitle()%></h3>
+                            <h3 style="text-align: right"><b>PKR</b> <%=recievedrealestate.get(i).getPrice()%>  </h3>
+                            <button class="btn btn-success btn-lg reviewLink" id="submit_btn_<%= ID %>" onclick="openthis(<%= ID %>)">View Deals</button>
+                            <input type="hidden">
                         </div>
 
                         <div class="col-sm-4" style="margin-top: 5%">
                             <p>72 reviews</p>
-                            <p><b>Location :</b> <% recievedrealestate.get(i).getLocation();%></p>
+                            <p><b>Location :</b> <%=recievedrealestate.get(i).getLocation()%></p>
                         </div>
+
+
                         <!--</ng-container>-->
                     </div>
+                    </form>
+                    <%
+                            }
+                        }
+                    %>
                     <div class="row">
                         <div class="col-12" class="pagination" style="margin-top: 5%">
 
@@ -190,10 +223,9 @@ Header
 
                 </div>
 
-                <%
-                    }
-                    }
-                %>
+
+
+
 
             </div>
         </div>
@@ -278,6 +310,29 @@ login modal
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
 <!-- Contact Form JavaScript File -->
 <!--  <script src="contactform/contactform.js"></script>-->
+
+
+
+
+<script type="text/javascript">
+
+    function openthis(id)
+    {
+        debugger;
+        var ID='divform_' + id;
+        var btnid='submit_btn_'+id;
+
+        alert("inopenthis");
+        document.getElementById(ID).action="/ratingservlet?id="+id+"&type=show";
+        document.getElementById(btnid).submit();
+
+    };
+
+
+
+
+</script>
+
 
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>

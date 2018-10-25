@@ -1,5 +1,6 @@
 package Business_Layer;
 
+import Data_Layer.bankingplandata;
 import Data_Layer.userdata;
 
 import java.sql.SQLException;
@@ -138,7 +139,7 @@ public class Bankingplan {
 
     public void addnewbankingplan()
     {
-        userdata tempobj=new userdata();
+        bankingplandata tempobj=new bankingplandata();
         try {
             tempobj.bankingplandata(name,InvestmentFund,maxagematurity,contact,ATpaymentrange,SumAssured,maxannualpremium,CM,unitallocation,Email,ppmode,psf);
 

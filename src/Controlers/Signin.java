@@ -1,6 +1,7 @@
 package Controlers;
 
 import Business_Layer.User;
+import Business_Layer.admin;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,41 +29,67 @@ public class Signin extends HttpServlet {
         System.out.println("Got in post");
 
         User signinginuser = new User();
+        User signedinuser = null;
 
         signinginuser.setEmail(email);
         signinginuser.setPassword(password);
 
+
         if (validateEmail(email) && password.length() >= 5) {
-            System.out.println("done");
-            response = "Signin successfull";
-            try {
-                signinginuser.signin();
-            }
-            catch(SQLException e)
-            {
 
-            }
-            if (signinginuser != null) {
-                int userid = signinginuser.getId();
-                String emailid = signinginuser.getEmail();
-                String pswrd = signinginuser.getPassword();
-                System.out.println("got signed");
-                HttpSession usersession = req.getSession();
-                usersession.setAttribute("signedinuser", signinginuser);
-                resp.sendRedirect("Banking.jsp");
+            if (email.endsWith("@investsmart.com")) {
+                System.out.println("in admin part");
+
+                ArrayList<admin> temolist;
+                admin obj = new admin();
+                temolist = obj.adminsignin();
+
+                for (int i = 0; i < temolist.size(); i++) {
+                    if (temolist.get(i).getEmail().matches(email) && temolist.get(i).getPassword().matches(password)) {
+                        RequestDispatcher rd = req.getRequestDispatcher("admin.jsp");
+                        req.setAttribute("message", response);
+                        rd.forward(req, resp);
+                    }
+                }
+
+
             } else {
-                response = "Signin failed";
-                RequestDispatcher rd = req.getRequestDispatcher("loginform.jsp");
-                req.setAttribute("message", response);
-                rd.forward(req, resp);
-            }
+                System.out.println("done");
+                response = "Signin successfull";
+                try {
+                    signedinuser = signinginuser.signin();
+                    if (signedinuser != null) {
+                        int userid = signinginuser.getId();
+                        String emailid = signinginuser.getEmail();
+                        String pswrd = signinginuser.getPassword();
 
-        } else {
-            response = "Email or Password is of the wrong format";
-            RequestDispatcher rd = req.getRequestDispatcher("loginform.jsp");
-            req.setAttribute("message", response);
-            rd.forward(req, resp);
+                        System.out.println("got signed");
+                        System.out.println(signedinuser.getId());
+                        System.out.println(signedinuser.getGender());
+
+                        HttpSession usersession = req.getSession();
+                        usersession.setAttribute("signedinuser", signedinuser);
+                        req.setAttribute("signedinuser", signedinuser);
+                        System.out.println("id is " + usersession.getId());
+
+                        RequestDispatcher rd = req.getRequestDispatcher("Userprofile.jsp");
+                        rd.forward(req, resp);
+                        //realestateservlet obj=new realestateservlet();
+                        //obj.doPost(req,resp);
+
+                        //resp.sendRedirect("Userprofile.jsp");
+                    } else {
+                        response = "Signin failed";
+                        RequestDispatcher rd = req.getRequestDispatcher("SigninSignup.jsp");
+                        req.setAttribute("message", response);
+                        rd.forward(req, resp);
+                    }
+                } catch (SQLException e) {
+
+                }
+            }
         }
+
     }
 
 

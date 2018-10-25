@@ -8,13 +8,15 @@ public class Realestate {
     String size;
     String title;
     String paginationhref;
+    String description;
 
     public Realestate() {
     }
 
-    public Realestate(String c1, String c2, String price, String location, String size, String title, String paginationhref) {
+    public Realestate(String c1, String c2, String price, String location,String description, String size, String title, String paginationhref) {
         this.c1 = c1;
         this.c2 = c2;
+        this.description=description;
         this.price = price;
         this.location = location;
         this.size = size;
@@ -76,5 +78,13 @@ public class Realestate {
 
     public void setPaginationhref(String paginationhref) {
         this.paginationhref = paginationhref;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

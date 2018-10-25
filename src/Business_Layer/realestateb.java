@@ -17,17 +17,20 @@ public class realestateb {
             realestatedata obj=new realestatedata();
             hashtableArrayList=obj.getRealestate();
             if(hashtableArrayList.isEmpty()){
-                System.out.println(message);
+                System.out.println("got nothing");
             }
             else
             {
 
+
+                System.out.println("got everything");
                 for(int i=0;i<hashtableArrayList.size();i++)
                 {
                     String c1;
                     String c2;
                     String price;
                     String location;
+                    String description;
                     String size;
                     String title;
                     String paginationhref;
@@ -36,11 +39,12 @@ public class realestateb {
                     c2=hashtableArrayList.get(i).get("c2");
                     price=hashtableArrayList.get(i).get("price");
                     location=hashtableArrayList.get(i).get("location");
+                    description=hashtableArrayList.get(i).get("description");
                     size=hashtableArrayList.get(i).get("size");
                     title=hashtableArrayList.get(i).get("title");
                     paginationhref=hashtableArrayList.get(i).get("paginationhref");
 
-                    Realestate newobj=new Realestate();
+                    Realestate newobj=new Realestate(c1,c2,price,location,description,size,title,paginationhref);
                     realestatelist.add(newobj);
 
                 }

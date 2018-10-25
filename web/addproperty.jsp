@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
-  Date: 6/6/2018
-  Time: 12:08 AM
+  Date: 10/18/2018
+  Time: 8:27 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -81,6 +81,7 @@ Header
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li class="menu-active"><a href="#body">Home</a></li>
+
                 <li><a href="#services">Plans</a></li>
                 <li><a href="#clients">Property Areas</a></li>
                 <li><a href="#team">Messages</a></li>
@@ -93,75 +94,43 @@ Header
     </div>
 </header><!-- #header -->
 
-<form method="post" action="/addplanservlet">
+<form method="post" action="/addpropertyservlet">
     <div id="home" class="container" style="box-shadow: 0px 2px 30px rgba(0,0,0,0.30);margin-top: 2%;
         margin-bottom: 2%;">
         <div class="row">
             <div class="col-md-12">
                 <div class="fsSectionText">
-                    <h1>Add Banking Plan</h1>
-                    <p>Please fill out your information below to register this Plan.
+                    <h1>Add Property Plan</h1>
+                    <p>Please fill  Plan.
                     </p>
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control" id="Name" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="InvestmentFund">Investment Fund</label>
-                    <input type="text" class="form-control" id="InvestmentFund" placeholder="">
+                    <label for="Des">Description</label>
+                    <input type="text" class="form-control" id="Des" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="maxagematurity">Maximum Age at Maturity</label>
-                    <input type="number" class="form-control" id="maxagematurity" placeholder="">
+                    <label for="Loc">Location</label>
+                    <input type="text" class="form-control" id="Loc" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label >Available Term & Payment Range</label>
-                    <input type="number" class="form-control" id=" ATpaymentrange" placeholder="">
-                </div>
-
-
-                <div class="form-group">
-                    <label for="SumAssured">Sum Assured</label>
-                    <input type="number" class="form-control" id="SumAssured" placeholder="">
+                    <label >Price</label>
+                    <input type="number" class="form-control" id=" Price" placeholder="">
                 </div>
 
 
                 <div class="form-group">
-                    <label for="maxannualpremium">Minimum Annual Premium</label>
-                    <input type="number" class="form-control" id="maxannualpremium" placeholder="">
+                    <label for="Link">Link</label>
+                    <input type="text" class="form-control" id="Link" placeholder="">
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label for="ppmode">Premium Payment Mode</label>
-                    <input type="text" class="form-control" id="ppmode" placeholder="">
-                </div>
-
-
-                <div class="form-group">
-                    <label for="psf">Partial Surrender Benefits (available after completion of two
-                        years)</label>
-                    <input type="text" class="form-control" id="psf" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label for="CoverMultiple">Cover Multiple</label>
-                    <input type="text" class="form-control" id="CoverMultiple" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label for="unitallocation">Unit Allocation as % of Basic Plan Premium</label>
-                    <input type="text" class="form-control" id="unitallocation" placeholder="">
-                </div>
             </div>
         </div>
         <div   class="row" style="padding-bottom:5%;">

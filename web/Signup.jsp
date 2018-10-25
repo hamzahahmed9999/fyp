@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
-  Date: 6/5/2018
-  Time: 3:54 PM
+  Date: 10/19/2018
+  Time: 12:19 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -81,12 +81,11 @@ Header
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="#body">Home</a></li>
-                    <li><a href="Banking.jsp">Plans</a></li>
-                    <li><a href="">Real Estate</a></li>
-                    <li><a href="Userprofile.jsp">Profile</a></li>
-                    <li><a href="contactus.jsp">Contact</a></li>
-
-                    <li><a href="#" class="btn signup">Logout</a></li>
+                    <li><a href="#services">Plans</a></li>
+                    <li><a href="#clients">Property Area</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login"
+                                                data-toggle="modal">Login</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
@@ -94,61 +93,53 @@ Header
 
 
 
-    <form method="post" action="/addpreferencesservlet">
-        <div class="container" style="margin-top: 2%;margin-bottom: 2%;">
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-bank"></a> Banking Preferences</h2>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="IR">Investment Range</label>
-                        <input type="text" class="form-control" id="IR" placeholder="enter number">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-briefcase"></a> Real Estate Preferences</h2>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" placeholder="Enter City">
-                    </div>
-                    <div class="form-group">
-                        <label for="Area">Area</label>
-                        <input type="text" class="form-control" id="Area" placeholder="Enter Area">
-                    </div>
-                    <div class="form-group">
-                        <label for="Size">Size</label>
-                        <input type="text" class="form-control" id="Size" placeholder="Enter Size">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <h2><a class="fa fa-home"></a> House (Not Mandaotry)</h2>
-                    </div>
-                    <div class="form-group">
-                        <label for="stories">Stories</label>
-                        <input type="text" class="form-control" id="stories" placeholder="">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="Bedrooms">Bedrooms</label>
-                        <input type="text" class="form-control" id="bedrooms" placeholder="">
+
+
+
+    <div class="panel panel-primary" style="margin:20px; margin-top: 5%;margin-bottom: 5%">
+        <div class="panel-heading">
+            <h3 class="panel-title">Registration Form</h3> </div>
+        <div class="panel-body">
+            <form action="Signup" method="post" class="form1">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="name">Name* </label>
+                        <input type="text" class="form-control input-sm" id="name" name="uname" placeholder="" required> </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="uemail">Email*</label>
+                        <input type="email" class="form-control input-sm" id="uemail" name="uemail" placeholder="" required> </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="ucontact">Mobile*</label>
+                        <input type="text" class="form-control input-sm" id="ucontact" name="ucontact" placeholder="" required> </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="ucity">City*</label>
+                        <input type="text" class="form-control input-sm" id="ucity" name="ucity" placeholder="" required> </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="upassword">Password</label>
+                        <input type="password" class="form-control input-sm" id="upassword" name="upassword" placeholder="" required> </div>
+                </div>
+                <div class="col-md-12 col-sm-12" id="deceased">
+                    <div class="form-group col-md-3 col-sm-3">
+                        <label for="ugender">Gender*</label>
+                        <input type="text" class="form-control input-sm" id="ugender" name="ugender" placeholder="" required> </div>
+                    <div class="form-group col-md-3 col-sm-3">
+                        <label for="udob">DOB*</label>
+                        <input type="date" class="form-control input-sm" id="udob" name="udob" placeholder="" required><label> Format (DD/MM/YYYY )</label> </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="cpassword">Confirm Password</label>
+                        <input type="password" class="form-control input-sm" id="cpassword" name="cpassword" placeholder="" required>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <button class="btn btn-success">Submit</button>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <button id="submitform" class="btn btn-primary">Submit</button> </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
+
 
 
 
