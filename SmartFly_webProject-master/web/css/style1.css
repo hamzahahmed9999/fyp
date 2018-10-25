@@ -1,0 +1,33 @@
+.sp-contact-info {
+    float: right;
+    list-style: none;
+    padding: 0;
+    margin: 0 -10px;
+}
+.sp-contact-info li 
+{
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 90%;
+}
+#sp-top1
+{
+    padding-right: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+#phonenumber,#emailadd{
+    color: black; !important;
+    font-weight: bold;
+    font-family: 'Baloo Tammudu', cursive;
+    letter-spacing: 0.2px;
+}
+#phonenumber:hover,#emailadd:hover{
+    text-decoration: none;
+    color: blue;
+}
+.fixed
+{
+    z-index: 0;
+    position: fixed;
+}
