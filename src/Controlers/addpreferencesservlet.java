@@ -1,8 +1,10 @@
 package Controlers;
 
 import Business_Layer.Bankingplan;
+import Business_Layer.User;
 import Business_Layer.sendpreferences;
 
+import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,16 +17,17 @@ import java.io.IOException;
 public class addpreferencesservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int IR=Integer.parseInt(req.getParameter("IR"));
+        String Investmentrange=req.getParameter("IR");
         String city=req.getParameter("city");
         String Area=req.getParameter("Area");
         String Size=req.getParameter("Size");
-        int stories=Integer.parseInt(req.getParameter("stories"));
-        int bedrooms=Integer.parseInt(req.getParameter("bedrooms"));
+        String s=req.getParameter("stories");
+        String b=req.getParameter("bedrooms");
 
 
-
-
+        int IR=Integer.parseInt(Investmentrange);
+        int stories=0;
+        int bedrooms=Integer.parseInt(b);
         String response="";
 
 
@@ -32,10 +35,12 @@ public class addpreferencesservlet extends HttpServlet {
         response="Plan successfull";
         try{
 
-
+            User obj=(User) req.getSession().getAttribute("signedinuser");
+            int id=obj.getId();
             sendpreferences tempobj=new sendpreferences();
-            tempobj.passpreferences(IR,city,Area,Size,stories,bedrooms);
+            tempobj.passpreferences(id,IR,city,Size,Area,stories,bedrooms);
             RequestDispatcher rd=req.getRequestDispatcher("preferences.jsp");
+
             req.setAttribute("message",response);
             rd.forward(req,resp);
 

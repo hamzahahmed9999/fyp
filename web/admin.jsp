@@ -65,6 +65,7 @@ Top Bar
 Header
 ============================-->
     <header id="header">
+        <form id="form1" method="post">
         <div class="container">
 
             <div id="logo" class="pull-left">
@@ -82,15 +83,16 @@ Header
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="#body">Home</a></li>
 
-                    <li><a href="#services">Plans</a></li>
-                    <li><a href="#clients">Property Areas</a></li>
-                    <li><a href="#team">Messages</a></li>
-                    <li><a href="#" class="btn signup">Logout</a></li>
+                    <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
+                    <li><a href="javascript:{}" onclick="realestate()">Property Areas</a></li>
+                    <li><a href="javascript:{}" onclick="adminmessages()">Messages</a></li>
+                    <li><a href="javascript:{}" onclick="logout()" class="btn signup">Logout</a></li>
 
 
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
+        </form>
     </header><!-- #header -->
 
     <br>
@@ -258,6 +260,78 @@ login modal
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
 <!-- Contact Form JavaScript File -->
 <!--  <script src="contactform/contactform.js"></script>-->
+
+
+
+<script>
+
+
+
+
+    function logout()
+    {
+        var path="logoutservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+    function realestate()
+    {
+
+        var path="realestateservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+    function adminmessages()
+    {
+
+        var path="messagesservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+
+    function paln()
+    {
+
+        var path="bankingservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
 
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>

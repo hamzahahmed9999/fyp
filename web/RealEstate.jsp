@@ -73,8 +73,8 @@ Top Bar
     <section id="topbar" class="d-none d-lg-block">
         <div class="container clearfix">
             <div class="contact-info float-left">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="fa fa-phone"></i> +1 5589 55488 55
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">HR@investsmart.com</a>
+                <i class="fa fa-phone"></i> +92 3341731677
             </div>
             <div class="social-links float-right">
                 <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -86,148 +86,389 @@ Top Bar
         </div>
     </section>
 
+
+    <script type="text/javascript">
+
+        function checkminmax()
+        {
+            //alert("inside");
+            var minS=document.forms["searchform"]["SizeMin"].value;
+
+            //var minS=document.getElementById("SizeMin").value;
+            //alert(minS);
+            var maxS=document.forms["searchform"]["SizeMax"].value;
+            //var maxS=document.getElementById("SizeMax").value;
+            //alert(maxS);
+            var min=document.forms["searchform"]["PriceMin"].value;
+            //var min=document.getElementById("PriceMin").value;
+            //alert(min);
+            var max=document.forms["searchform"]["PriceMax"].value;
+            //alert(max);
+            //alert(maxS);
+  //          var max=document.getElementById("PriceMax").value;
+            //alert(max);
+           /* if(min > max)
+            {
+                alert("Minimum price cannot be greater than maximum");
+                return false;
+                //window.location="RealEstate.jsp";
+            }*/
+/*
+            if(minS > maxS)
+            {
+                alert("Minimum size cannot be greater than maximum");
+                //window.location="RealEstate.jsp";
+                return;
+            }*/
+
+
+                document.getElementById("searchform").submit();
+                return;
+
+        }
+
+
+    </script>
+
     <!--==========================
 Header
 ============================-->
     <header id="header">
-        <div class="container">
+        <form id="form1" method="post">
+            <div class="container">
 
-            <div id="logo" class="pull-left">
-                <h1>
-                    <a href="/">
-                        <img src="img/main-logo.png" alt="investSMART">
-                    </a>
+                <div id="logo" class="pull-left">
+                    <h1>
+                        <a href="/">
+                            <img src="img/main-logo.png" alt="investSMART">
+                        </a>
 
-                </h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+                    </h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+                </div>
+
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+
+
+                        <li ><a href="SignupSignin.jsp">Home</a></li>
+                        <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
+                        <li class="menu-active"><a href="javascript:{}" onclick="realestate()">Real Estate</a></li>
+                        <li><a href="contactus.jsp">Contact</a></li>
+
+
+                        <%
+                            if(request.getSession().getAttribute("signedinuser")!=null)
+                            {
+                        %>
+                        <li ><a href="Userprofile.jsp">Profile</a></li>
+                        <li><button href="#" id="submitbtnlogout" onclick="logout()" class="btn signup">Logout</button></li>
+
+                        <%
+
+                            }
+                        %>
+
+                    </ul>
+                </nav><!-- #nav-menu-container -->
             </div>
-
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="#body">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#clients">Clients</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login" data-toggle="modal">Login</a></li>
-                    <li><a href="#" class="btn signup">Signup</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-        </div>
+        </form>
     </header><!-- #header -->
 
 
 
 
-    <h2 style="text-align: center;margin-top: 100px">City Location Name</h2>
-    <form class="form-inline" id="searchform" style="margin-left: 38%;">
-        <input type="text" class="form-control input-lg" id="myInput" placeholder="Click here">
-        <button type="button" class="btn btn-default" style="margin-left: 5px;">Search</button>
+    <h2 style="text-align: center;margin-top: 10px">Search Filters</h2>
+    <form  id="searchform"  action="searchservlet" method="post" >
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                City:<select class="form-control input-lg" name="City">
+                <option value="Lahore">Lahore</option>
+                <option value="Islamabad">Islamabad</option>
+                <option value="Karachi">Karachi</option>
+                <option value="Rawalpindi">Rawalpindi</option>
+                <option value="Peshawar">Peshawar</option>
+                <option value="Multan">Multan</option>
+                <option value="Faisalabad">Faisalabad</option>
+                <option value="Gujranwala">Gujranwala</option>
+                <option value="Sialkot">Sialkot</option>
+                <option value="Jhelum">Jhelum</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Hafizabad">Hafizabad</option>
+                <option value="Hassan Abdal">Hassan Abdal</option>
+                <option value="Jauharabad">Jauharabad</option>
+                <option value="Jhang">Jhang</option>
+                <option value="Abbottabad">Abbottabad</option>
+                <option value="Wah">Wah</option>
+                <option value="Toba Tek Singh">Toba Tek Singh</option>
+                <option value="Vehari">Vehari</option>
+                <option value="Wazirabad">Wazirabad</option>
+                <option value="Sargodha">Sargodha</option>
+                <option value="Quetta">Quetta</option>
+                <option value="Sadiqabad">Sadiqabad</option>
+                <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                <option value="Sahiwal">Sahiwal</option>
+                <option value="Sheikhupura">Sheikhupura</option>
+                <option value="Sukkur">Sukkur</option>
+                <option value="Taxila">Taxila</option>
+                <option value="Murree">Murree</option>
+                <option value="Okara">Okara</option>
+                <option value="Gujrat">Gujrat</option>
+                <option value="Bahawalpur">Bahawalpur</option>
+                <option value="Dera Ghazi Khan">Dera Ghazi Khan</option>
+                <option value="Ahmedpur East">Ahmedpur East</option>
+                <option value="Kasur">Kasur</option>
+
+            </select>
+            </div>
+            <div class="col-md-4">
+                Area:<input type="text" class="form-control input-lg" autocomplete="on" spellcheck="false" id="mySearch" name="mySearch" placeholder="Enter location" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                Price:<select class="form-control input-lg" name="PriceMin" id="PriceMin">
+                <option value="0">MIN</option>
+                <option value="5000000">5000000</option>
+                <option value="8000000">8000000</option>
+                <option value="10000000">10000000</option>
+                <option value="12000000">12000000</option>
+                <option value="14000000">14000000</option>
+                <option value="16000000">16000000</option>
+                <option value="18000000">18000000</option>
+                <option value="20000000">20000000</option>
+                <option value="25000000">25000000</option>
+                <option value="30000000">30000000</option>
+                <option value="50000000">50000000</option>
+            </select>
+                <select class="form-control input-lg" name="PriceMax" id="PriceMax">
+                    <option value="100000000">Max</option>
+                    <option value="5000000">5000000</option>
+                    <option value="8000000">8000000</option>
+                    <option value="10000000">10000000</option>
+                    <option value="12000000">12000000</option>
+                    <option value="14000000">14000000</option>
+                    <option value="16000000">16000000</option>
+                    <option value="18000000">18000000</option>
+                    <option value="20000000">20000000</option>
+                    <option value="25000000">25000000</option>
+                    <option value="30000000">30000000</option>
+                    <option value="50000000">50000000</option>
+                    <option value="60000000">60000000</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                Size(marla):<select class="form-control input-lg" name="SizeMin" id="SizeMin">
+                <option value="0">MIN</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+            </select>
+                <select class="form-control input-lg" name="SizeMax" id="SizeMax">
+                    <option value="35">MAX</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                Beds:<select class="form-control input-lg" name="Beds">
+                <option value="11">ALL</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            </div>
+        </div>
     </form>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-default" href="javascript:{}" onclick="checkminmax()" style="margin-top: 6%;margin-left: 150%;">Search</button>
+    </div>
 
     <hr>
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-3" id="sidebar">
-                <div class="list-group">
-
-                    <label for="customRange2"><h3 style="margin-bottom: 0px;">Price</h3></label>
-                    <input type="range" class="custom-range" min="0" max="5" id="customRange2">
-                    <div style="display: flex;flex-direction: row;margin-top: 3%;">
-                        <p>Min:Rs 0</p>
-                        <p style="margin-left:50%">Max:Rs 5</p>
-
-                    </div>
-
-                </div>
-            </div>
 
 
+            <%
+
+                ArrayList<Realestate> recievedrealestate=(ArrayList<Realestate>) (request.getAttribute("myrealestate"));
+                String msg="Sorry:The filters applied gives no result..Here are some suggestions";
+                String msg1="There are just few reults according to your filters..So result contains some suggestions";
+                String msg3="Sorry:There is no such location in this city..Here are some suggestions";
+                String msg4=".Here are some suggestions";
+                int count=0;
+                int count1;
+                int num1=0;
+                System.out.println(recievedrealestate.get(0).getCheck());
+                num1=recievedrealestate.get(0).getNum();
+                if (recievedrealestate.size()>15)
+                {
+                    count1=15;
+                }
+                else
+                {
+                    count1=recievedrealestate.size();
+                }
+                for (int i=0;i<count1 && count==0;i++)
+                {
+                    if (recievedrealestate.get(i).getCheck()==1)
+                    {
+                        count=1;
+                        System.out.println("1");
+
+                    }
+                    else if (recievedrealestate.get(i).getCheck()==2)
+                    {
+                        count=2;
+                        System.out.println("2");
+                    }
+                    else if (recievedrealestate.get(i).getCheck()==3)
+                    {
+                        count=3;
+                        System.out.println("3");
+                    }
+                }
+                if (count==1)
+                {
+            %>
+            <h3 style="font-family: 'Roboto Mono', monospace;"><%=msg%></h3>
+            <%
+                }
+
+                if (count==2)
+                {
+            %>
+            <h3 style="font-family: 'Roboto Mono', monospace;"><%=msg1%></h3>
+            <%
+                }
+                if (count==3)
+                {
+            %>
+            <h3 style="font-family: 'Roboto Mono', monospace;"><%=msg3%></h3>
+            <%
+                }
+
+                count=0;
 
 
+                if(!recievedrealestate.isEmpty())
+                {
+                    if (recievedrealestate.size()>15)
+                    {
+                        count=15;
+                    }
+                    else
+                    {
+                        count=recievedrealestate.size();
+                    }
+                    for(int i=0;i<count ;i++)
+                    {
+                        if (i==num1)
+                        {
+            %>
+            <h3 style="font-family: 'Roboto Mono', monospace;"><%=msg4%></h3>
+            <%
+                }
+                String ID=recievedrealestate.get(i).getHomeID();
 
-            <div class="col-sm-9">
+
+            %>
+
+
+            <div class="col-sm-12">
 
 
                 <div class="container-fluid">
-                    <%
 
-                        ArrayList<Realestate> recievedrealestate=(ArrayList<Realestate>) (request.getAttribute("myrealestate"));
-
-
-
-                        if(!recievedrealestate.isEmpty())
-                        {
-                            for(int i=0;i<3;i++)
-                            {
-                                String ID=recievedrealestate.get(i).getC1();
-
-
-                    %>
                     <form id="divform_<%= ID %>" method="post">
-                    <div class="row" id="group" style="border-top: 1px solid #E5E5E5;margin-bottom: 10px">
+                        <div class="row" id="group" style="border-top: 1px solid #E5E5E5;margin-bottom: 10px">
 
-                        <div class="col-sm-4" style="padding: 10px">
-                            <img src="http://i.stack.imgur.com/25Rl3.jpg" class="img-rounded" alt="Cinq Tre" width="100%" height="50%">
+                            <div class="col-sm-4" style="padding: 10px">
+                                <img src="./img/g.jpg" class="img-rounded" alt="Cinq Tre" width="100%" height="50%">
+                            </div>
+                            <div class="col-sm-4" style="border-right: 1px solid #a6a6a6;margin-top: 2%;margin-bottom: 2%;width: 100%">
+                                <h3 style="font-family: 'Roboto Mono', monospace;"><%=recievedrealestate.get(i).getTitle()%></h3>
+                                <p style="text-align: left;margin-bottom: 0px;"><b>PKR</b> <%=recievedrealestate.get(i).getPrice()%>  </p>
+                                <p style="text-align: left;margin-bottom: 0px;"><b>Size</b> <%=recievedrealestate.get(i).getArea()%>  Marla</p>
+                                <p style="margin-bottom: 0px;"><b>Location :</b> <%=recievedrealestate.get(i).getAreaName()%></p>
+                                <p style="margin-bottom: 0px;"><b>City :</b> <%=recievedrealestate.get(i).getCityName()%></p>
+                                <p style="text-align: left"><b>Beds</b> <%=recievedrealestate.get(i).getRooms()%>  </p>
+                                <input type="hidden">
+                            </div>
+
+                            <div class="col-sm-4" style="margin-top: 2%">
+                                <h4><b>short description</b> <p><%=recievedrealestate.get(i).getShortDescription()%></p>  </h4>
+                                <button class="btn btn-success reviewLink" id="submit_btn_<%= ID %>" onclick="openthis(<%= ID %>)">View Deals</button>
+                            </div>
+
+
+                            <!--</ng-container>-->
                         </div>
-                        <div class="col-sm-4" style="border-right: 1px solid #a6a6a6;margin-top: 2%;margin-bottom: 2%;width: 100%">
-                            <h3 style="font-family: 'Roboto Mono', monospace;"><%=recievedrealestate.get(i).getTitle()%></h3>
-                            <h3 style="text-align: right"><b>PKR</b> <%=recievedrealestate.get(i).getPrice()%>  </h3>
-                            <button class="btn btn-success btn-lg reviewLink" id="submit_btn_<%= ID %>" onclick="openthis(<%= ID %>)">View Deals</button>
-                            <input type="hidden">
-                        </div>
-
-                        <div class="col-sm-4" style="margin-top: 5%">
-                            <p>72 reviews</p>
-                            <p><b>Location :</b> <%=recievedrealestate.get(i).getLocation()%></p>
-                        </div>
-
-
-                        <!--</ng-container>-->
-                    </div>
                     </form>
-                    <%
-                            }
-                        }
-                    %>
-                    <div class="row">
-                        <div class="col-12" class="pagination" style="margin-top: 5%">
 
-                            <nav>
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">6</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">7</a></li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    <%--<div class="row">--%>
+                    <%--<div class="col-12" class="pagination" style="margin-top: 5%">--%>
+
+                    <%--<nav>--%>
+                    <%--<ul class="pagination">--%>
+                    <%--<li class="page-item">--%>
+                    <%--<a href="#" class="page-link" aria-label="Previous">--%>
+                    <%--<span aria-hidden="true">&laquo;</span>--%>
+                    <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li class="page-item"><a href="#" class="page-link">1</a></li>--%>
+                    <%--<li class="page-item"><a href="#" class="page-link">2</a></li>--%>
+                    <%--<li class="page-item"><a href="#" class="page-link">3</a></li>--%>
+                    <%--<li class="page-item"><a href="#" class="page-link">4</a></li>--%>
+                    <%--<li class="page-item"><a href="#" class="page-link">5</a></li>--%>
+                    <%--<li class="page-item"><a href="#" class="page-link">6</a></li>--%>
+                    <%--<li class="page-item"><a href="#" class="page-link">7</a></li>--%>
+                    <%--<li class="page-item">--%>
+                    <%--<a href="#" class="page-link" aria-label="Next">--%>
+                    <%--<span aria-hidden="true">&raquo;</span>--%>
+                    <%--</a>--%>
+                    <%--</li>--%>
+                    <%--</ul>--%>
+                    <%--</nav>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
 
 
                 </div>
-
-
-
-
-
             </div>
+            <%
+                    }
+                }
+            %>
+
         </div>
     </div>
 
@@ -314,6 +555,8 @@ login modal
 
 
 
+
+
 <script type="text/javascript">
 
     function openthis(id)
@@ -322,7 +565,6 @@ login modal
         var ID='divform_' + id;
         var btnid='submit_btn_'+id;
 
-        alert("inopenthis");
         document.getElementById(ID).action="/ratingservlet?id="+id+"&type=show";
         document.getElementById(btnid).submit();
 
@@ -332,6 +574,87 @@ login modal
 
 
 </script>
+
+
+
+
+<script type="text/javascript">
+
+    function preferences()
+    {
+        var id="preferences";
+        var path="preferences.jsp?";
+
+
+        document.getElementById("preferences").action=path;
+        document.getElementById("submitbtn").submit();
+
+
+    }
+
+
+
+
+
+    function realestate()
+    {
+
+        var path="realestateservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+
+    /* function checkminmaxsize()
+     {
+
+         if(min>max)
+         {
+             alert("Minimum size cannot be greater than maximum");
+         }
+         else
+         {
+             document.getElementById("searchform").submit();
+         }
+     }*/
+
+
+    function paln()
+    {
+
+        var path="bankingservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+
+    }
+
+
+
+    function logout()
+    {
+        var id="preferences";
+        var path="logoutservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+</script>
+
+<!-- Template Main Javascript File -->
+<script src="js/main.js"></script>
 
 
 <!-- Template Main Javascript File -->

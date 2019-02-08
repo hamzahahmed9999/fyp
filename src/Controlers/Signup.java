@@ -34,14 +34,16 @@ public class Signup extends HttpServlet {
         System.out.println(email);
 
         System.out.println(password);
-        if(validateEmail(email) && password.length()>8)
+        if(validateEmail(email) && password.length()>=8)
         {
             System.out.println("done");
             response="Signup successfull";
+
             try{
+                System.out.println("coming after done");
                 User newuser=new User(name,email,contact,"","",password,gender,city,dob);
                 newuser.signup();
-                RequestDispatcher rd=req.getRequestDispatcher("Banking.jsp");
+                RequestDispatcher rd=req.getRequestDispatcher("SignupSignin.jsp");
                 req.setAttribute("message",response);
                 rd.forward(req,resp);
 
@@ -49,6 +51,7 @@ public class Signup extends HttpServlet {
             catch(SQLException e)
             {
 
+                e.printStackTrace();
             }
         }
         else

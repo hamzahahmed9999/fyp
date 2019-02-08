@@ -1,4 +1,6 @@
-<%@ page import="Business_Layer.Realestate" %><%--
+<%@ page import="Business_Layer.Realestate" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Business_Layer.ratingnreview" %><%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
   Date: 6/5/2018
@@ -33,7 +35,7 @@
     <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 
     <!-- Main Stylesheet File -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?v=1.1" rel="stylesheet">
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -137,21 +139,94 @@
         }
 
 
-        function addwishlist() {
+        function addwishlist(area) {
+            alert("in wish list");
+
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange=function() {
                 if (this.readyState == 4 && this.status == 200) {
-
-
                     document.getElementById("result1").innerHTML = xhttp.responseText;
                 }
             };
-            xhttp.open("POST", "/ratingservlet?name=hamza&number=5", true);
+            var areaid="?areaid="+area;
+            alert(areaid);
+            xhttp.open("POST", "/ratingservlet"+areaid+"&type=wish", true);
             xhttp.send();
         }
 
 
     </script>
+
+    <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+        .review-block{
+            background-color:#FAFAFA;
+            border:1px solid #EFEFEF;
+            padding:15px;
+            border-radius:3px;
+            margin-bottom:15px;
+        }
+        .review-block-name{
+            font-size:12px;
+            margin:10px 0;
+        }
+        .review-block-date{
+            font-size:12px;
+        }
+        .review-block-rate{
+            font-size:13px;
+            margin-bottom:15px;
+        }
+        .review-block-title{
+            font-size:15px;
+            font-weight:700;
+            margin-bottom:10px;
+        }
+        .review-block-description{
+            font-size:13px;
+        }
+
+    </style>
 </head>
 
 <body id="body">
@@ -163,8 +238,8 @@ Top Bar
     <section id="topbar" class="d-none d-lg-block">
         <div class="container clearfix">
             <div class="contact-info float-left">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="fa fa-phone"></i> +1 5589 55488 55
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">ContactTeam@investsmart.com</a>
+                <i class="fa fa-phone"></i> +92 3341731677
             </div>
             <div class="social-links float-right">
                 <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -180,44 +255,55 @@ Top Bar
 Header
 ============================-->
     <header id="header">
-        <div class="container">
+        <form id="form1" method="post">
+            <div class="container">
 
-            <div id="logo" class="pull-left">
-                <h1>
-                    <a href="/">
-                        <img src="img/main-logo.png" alt="investSMART">
-                    </a>
+                <div id="logo" class="pull-left">
+                    <h1>
+                        <a href="/">
+                            <img src="img/main-logo.png" alt="investSMART">
+                        </a>
 
-                </h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+                    </h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+                </div>
+
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+
+                        <li ><a href="SignupSignin.jsp">Home</a></li>
+
+                        <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
+                        <li class="menu-active"><a href="javascript:{}" onclick="realestate()">Real Estate</a></li>
+
+                        <%
+                            if(request.getSession().getAttribute("signedinuser")!=null)
+                            {
+                        %>
+                        <li><a href="Userprofile.jsp">Profile</a></li>
+                        <li><a href="contactus.jsp">Contact</a></li>
+
+                        <li><a href="javascript:{}" onclick="logout()" class="btn signup">Logout</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
             </div>
-
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li ><a href="#body">Home</a></li>
-                    <li><a href="Banking.jsp">Plans</a></li>
-                    <li class="menu-active"><a href="">Real Estate</a></li>
-                    <li><a href="Userprofile.jsp">Profile</a></li>
-                    <li><a href="contactus.jsp">Contact</a></li>
-
-                    <li><a href="#" class="btn signup">Logout</a></li>
-                    <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login" data-toggle="modal">Login</a></li>
-                    <li><a href="#" class="btn signup">Signup</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-        </div>
+        </form>
     </header><!-- #header -->
 
 
-<%
+    <%
 
 
-    Realestate obj=(Realestate) request.getAttribute("showproperty");
+        Realestate obj=(Realestate) request.getAttribute("showproperty");
+        ArrayList<ratingnreview>propratings=(ArrayList<ratingnreview>) request.getAttribute("ratingsnreviews");
 
 
 
-%>
+    %>
 
     <div class="container">
         <div class="row" style="margin: 2% 0%;">
@@ -243,11 +329,11 @@ Header
                                     <h3 style="margin-top: 4%;">Rs <%=obj.getPrice()%></h3>
                                 </div>
                                 <div class="col-sm-4">
-                                    <h3 style="margin-top: 4%;"><%=obj.getSize()%></h3>
+                                    <h3 style="margin-top: 4%;"><%=Float.valueOf(obj.getArea())*20.90%> Marla</h3>
 
                                 </div>
                                 <div class="col-sm-4">
-                                    <h3><%=obj.getLocation()%></h3>
+                                    <h3><%=obj.getAreaName()%></h3>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +345,7 @@ Header
                             <div class="reviewDiv">
 
                                 <h2 style="font-weight: bold;">Property Overview</h2>
-                                <p><%=obj.getDescription()%> </p>
+                                <p><%=obj.getDesciption()%> </p>
 
 
 
@@ -269,44 +355,163 @@ Header
                                     <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
                                 </label>
 
+
+                                <%--                                <button type="button" class="btn btn-warning btn-lg " onclick="pageopen(<%=obj.getC2()%>)" data-attr="5" id="" style="margin-right: 5%;">
+                                                                    <i class="fa fa-rocket " aria-hidden="true" ></i>
+                                                                    <a>Open Link</a>
+                                                                </button>--%>
+                                <%
+                                    if(request.getSession().getAttribute("signedinuser")!=null)
+                                    {
+                                %>
+
                                 <div class="row" id="ratingStar">
 
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating1(<%=obj.getC1()%>)" data-attr="1" id="rating-star-1">
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating1(<%=obj.getHomeID()%>)" data-attr="1" id="rating-star-1">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating2(<%=obj.getC1()%>)" data-attr="2" id="rating-star-2">
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating2(<%=obj.getHomeID()%>)" data-attr="2" id="rating-star-2">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating3(<%=obj.getC1()%>)" data-attr="3" id="rating-star-3">
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating3(<%=obj.getHomeID()%>)" data-attr="3" id="rating-star-3">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating4(<%=obj.getC1()%>)" data-attr="4" id="rating-star-4">
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating4(<%=obj.getHomeID()%>)" data-attr="4" id="rating-star-4">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating5(<%=obj.getC1()%>)" data-attr="5" id="rating-star-5" style="margin-right: 5%;">
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="sendrating5(<%=obj.getHomeID()%>)" data-attr="5" id="rating-star-5" style="margin-right: 5%;">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </button>
 
                                     <h2 class="bold rating-header" style="margin-bottom: 0px;">
                                         <span class="selected-rating">0</span><small> / 5</small>
                                     </h2>
-
+                                    </button>
 
 
                                 </div>
 
+                                <button type="button" class=" btn btn-default btn-lg btn btn-warning" onclick="addwishlist(<%=obj.getHomeID()%>)" data-attr="5" id="wishlist" style="margin-right: 5%;">
+                                    <i class="fa fa-thermometer " aria-hidden="true"></i>
+                                    <a>Add to Wishlist</a>
+                                </button>
+
+                                <a target="_blank" class="fa fa-rocket " aria-hidden="true" href="<%=obj.getSlug()%>"  > Open Link </a>
+
                                 <div><textarea id="reviewarea" name="reviewarea"  rows="4" style="width: 50%;"></textarea></div>
-                                <div><input id="givereview" class="btn btn-success" style="margin-top:5px" onclick="sendreview(<%=obj.getC1()%>)" type="button" value="Give Review"></div>
+                                <div><input id="givereview" class="btn btn-success" style="margin-top:5px" onclick="sendreview(<%=obj.getHomeID()%>)" type="button" value="Give Review"></div>
+
+
+
+
+
+                                <%
+                                }
+                                else
+                                {
+                                %>
+
+                                <div class="row" id="ratingStar">
+
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="print('Cannot give rating. You are not logged in!')" data-attr="1" id="rating-star-1">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="print('Cannot give rating. You are not logged in!')" data-attr="2" id="rating-star-2">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="print('Cannot give rating. You are not logged in!')" data-attr="3" id="rating-star-3">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="print('Cannot give rating. You are not logged in!')" data-attr="4" id="rating-star-4">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btnrating btn btn-default btn-lg" onclick="print('Cannot give rating. You are not logged in!')" data-attr="5" id="rating-star-5" style="margin-right: 5%;">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </button>
+
+                                    <h2 class="bold rating-header" style="margin-bottom: 0px;">
+                                        <span class="selected-rating">0</span><small> / 5</small>
+                                    </h2>
+                                    </button>
+
+
+                                </div>
+
+                                <button type="button" class=" btn btn-default btn-lg btn btn-warning" onclick="print('Cannot save wish. You are not logged in!')" data-attr="5" id="wishlist" style="margin-right: 5%;">
+                                    <i class="fa fa-thermometer " aria-hidden="true"></i>
+                                    <a>Add to Wishlist</a>
+                                </button>
+
+                                <a class="fa fa-rocket " aria-hidden="true" href="<%=obj.getSlug()%>"  > Open Link </a>
+
+                                <div><textarea id="" name="reviewarea"  rows="4" style="width: 50%;"></textarea></div>
+                                <div><input id="givereview1" class="btn btn-success" style="margin-top:5px" onclick="print('Cannot give review. You are not logged in!')" onclick="myFunction()" type="button" value="Give Review"></div>
+
+
+                                <%
+
+                                    }
+                                %>
                             </div>
 
 
                         </div>
                     </div>
                 </div>
+
+                <%
+                    for(int i=0;i<propratings.size();i++)
+                    {
+                %>
+
+
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">1 January 2019<br/>1 day ago</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <%
+                                    for(int j=0;j< Integer.parseInt(propratings.get(i).getRating());j++)
+                                    {
+                                %>
+                                <button type="button" style="margin-left: 2px;" class="btn btn-success btn-xs" aria-label="Left Align"  *ngFor="let str of getRepeater(str.Rating)">
+                                    <span class="fa fa-star" aria-hidden="true"></span>
+                                </button>
+                                <%
+                                    }
+                                    for(int j=0;j< 5-Integer.parseInt(propratings.get(i).getRating());j++)
+                                    {
+                                %>
+                                <button type="button" style="margin-left: 2px;" class="btn btn-danger btn-xs" aria-label="Left Align"  *ngFor="let str of getRepeater(5-str.Rating)">
+                                    <span class="fa fa-star" aria-hidden="true"></span>
+                                </button>
+                                <%
+                                    }
+                                %>
+                            </div>
+                            <div class="review-block-title"><%=propratings.get(i).getUname()%></div>
+                            <div class="review-block-description"><%=propratings.get(i).getReview()%></div>
+                        </div>
+                    </div>
+                    <hr/>
+
+                </div>
+                <%
+
+                    }
+                %>
+
             </div>
         </div>
     </div>
 
+
+
+    <div id="snackbar">Thank you for your Review..</div>
 
 
 
@@ -389,7 +594,10 @@ login modal
 <script>
 
     function sendreview(id) {
-        alert("in review")
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange=function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -399,18 +607,71 @@ login modal
             }
         };
 
-        alert("in review")
         var ra=document.getElementById("reviewarea").value;
-        alert(ra);
         var reviewarea="?reviewarea="+ra;
         var areaid="&areaid="+id;
         var type="type=review";
-        alert(reviewarea);
-        alert(areaid);
         xhttp.open("POST", "/ratingservlet"+reviewarea+"&"+type+areaid, true);
         xhttp.send();
     }
 
+
+
+
+    function realestate()
+    {
+
+        var path="realestateservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+    function paln()
+    {
+
+        var path="bankingservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+
+    }
+
+
+    function pageopen(link)
+    {
+        window.open(link);
+    }
+
+
+    function logout()
+    {
+        var id="preferences";
+        var path="logoutservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+    function callpage(link)
+    {
+        window.open(link);
+    }
+
+
+    function print(message) {
+        alert(message);
+    }
 
 
 

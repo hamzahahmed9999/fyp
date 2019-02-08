@@ -128,8 +128,9 @@ public class User {
     public void signup() throws SQLException {
 
         try{
+            System.out.println("coming in user func");
             Data_Layer.userdata obj=new userdata();
-            obj.signupcheck(Name,Email,Password,Contactnumber,Gender,city,DOB);
+            obj.signupcheck(this.Name,this.Email,this.Password,this.Contactnumber,this.Gender,this.city,this.DOB);
         }
         catch(SQLException e)
         {

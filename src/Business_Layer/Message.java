@@ -3,12 +3,23 @@ package Business_Layer;
 import Data_Layer.userdata;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Message {
     String fname;
     String lname;
+
+    public Message(String fname, String lname, String cntnumber,String email, String subject) {
+        this.fname = fname;
+        this.lname = lname;
+        this.cntnumber = cntnumber;
+        this.subject = subject;
+        this.email=email;
+
+    }
+
     String cntnumber;
-    String country;
+    String email;
     String subject;
 
     public String getFname() {
@@ -35,14 +46,14 @@ public class Message {
         this.cntnumber = cntnumber;
     }
 
-    public String getCountry() {
-        return country;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
     public String getSubject() {
         return subject;
     }
@@ -52,15 +63,29 @@ public class Message {
     }
 
 
+    public Message() {
+    }
+
     public Boolean sendmessage()
     {
         userdata temp=new userdata();
-        String temp1="hello me rukhsana";
 
-            temp.sendmessagetoadmin(this,temp1);
+
+            temp.sendmessagetoadmin(this);
+
             return true;
     }
 
 
+    public  ArrayList<Message> getmessage()
+    {
+        userdata temp=new userdata();
+
+        ArrayList<Message> mymessages=null;
+
+        mymessages=temp.getmessagetoadmin();
+
+        return mymessages;
+    }
 
 }

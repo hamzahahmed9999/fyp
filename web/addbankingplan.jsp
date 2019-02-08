@@ -48,8 +48,8 @@ Top Bar
 <section id="topbar" class="d-none d-lg-block">
     <div class="container clearfix">
         <div class="contact-info float-left">
-            <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-            <i class="fa fa-phone"></i> +1 5589 55488 55
+            <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">HR@investsmart.com</a>
+            <i class="fa fa-phone"></i> +92 3341731677
         </div>
         <div class="social-links float-right">
             <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -65,6 +65,7 @@ Top Bar
 Header
 ============================-->
 <header id="header">
+    <form method="post" id="form1">
     <div class="container">
 
         <div id="logo" class="pull-left">
@@ -81,17 +82,18 @@ Header
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li class="menu-active"><a href="#body">Home</a></li>
-                <li><a href="#services">Plans</a></li>
-                <li><a href="#clients">Property Areas</a></li>
-                <li><a href="#team">Messages</a></li>
-                <li><a href="#" class="btn signup">Logout</a></li>
-                <li onClick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login"
-                                            data-toggle="modal">Login</a></li>
-                <li><a href="#" class="btn signup">Signup</a></li>
+                <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
+                <li><a href="javascript:{}" onclick="realestate()">Property Areas</a></li>
+                <li><a href="javascript:{}" onclick="adminmessages()">Messages</a></li>
+                <li><a href="javascript:{}" onclick="logout()" class="btn signup">Logout</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
     </div>
+    </form>
 </header><!-- #header -->
+
+
+
 
 <form method="post" action="/addplanservlet">
     <div id="home" class="container" style="box-shadow: 0px 2px 30px rgba(0,0,0,0.30);margin-top: 2%;
@@ -105,63 +107,68 @@ Header
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="">
+                    <label for="Description">Description</label>
+                    <input type="text" class="form-control" id="Description" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="InvestmentFund">Investment Fund</label>
-                    <input type="text" class="form-control" id="InvestmentFund" placeholder="">
+                    <label for="PlantermMin">PlantermMin</label>
+                    <input type="text" class="form-control" id="PlantermMin" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="maxagematurity">Maximum Age at Maturity</label>
-                    <input type="number" class="form-control" id="maxagematurity" placeholder="">
+                    <label for="PlantermMax">PlantermMax</label>
+                    <input type="number" class="form-control" id="PlantermMax" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label >Available Term & Payment Range</label>
-                    <input type="number" class="form-control" id=" ATpaymentrange" placeholder="">
-                </div>
-
-
-                <div class="form-group">
-                    <label for="SumAssured">Sum Assured</label>
-                    <input type="number" class="form-control" id="SumAssured" placeholder="">
+                    <label for="PlanRate">PlanRate</label>
+                    <input type="number" class="form-control" id="PlanRate" placeholder="">
                 </div>
 
 
                 <div class="form-group">
-                    <label for="maxannualpremium">Minimum Annual Premium</label>
-                    <input type="number" class="form-control" id="maxannualpremium" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label for="ppmode">Premium Payment Mode</label>
-                    <input type="text" class="form-control" id="ppmode" placeholder="">
+                    <label for="MinimumInvestment">Minimum Investment</label>
+                    <input type="number" class="form-control" id="MinimumInvestment" placeholder="">
                 </div>
 
 
                 <div class="form-group">
-                    <label for="psf">Partial Surrender Benefits (available after completion of two
-                        years)</label>
-                    <input type="text" class="form-control" id="psf" placeholder="">
+                    <label for="MaximumInvestment">Maximum Investment</label>
+                    <input type="number" class="form-control" id="MaximumInvestment" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="CoverMultiple">Cover Multiple</label>
-                    <input type="text" class="form-control" id="CoverMultiple" placeholder="">
+                    <label for="Islamic">Islamic</label>
+                    <input type="text" class="form-control" id="Islamic" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="unitallocation">Unit Allocation as % of Basic Plan Premium</label>
-                    <input type="text" class="form-control" id="unitallocation" placeholder="">
+                    <label for="Monthly">Monthly</label>
+                    <input type="text" class="form-control" id="Monthly" placeholder="">
                 </div>
+
+
+                <div class="form-group">
+                    <label for="Quaterly">Quaterly</label>
+                    <input type="text" class="form-control" id="Quaterly" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label for="Halfyearly">Half Yearly</label>
+                    <input type="text" class="form-control" id="Halfyearly" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label for="Anually">Anually</label>
+                    <input type="text" class="form-control" id="Anually" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label for="Other">Other</label>
+                    <input type="text" class="form-control" id="Other" placeholder="">
+                </div>
+
             </div>
         </div>
         <div   class="row" style="padding-bottom:5%;">
@@ -252,6 +259,77 @@ login modal
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
 <!-- Contact Form JavaScript File -->
 <!--  <script src="contactform/contactform.js"></script>-->
+
+
+<script>
+
+
+
+
+    function logout()
+    {
+        var path="logoutservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+    function realestate()
+    {
+
+        var path="realestateservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+    function adminmessages()
+    {
+
+        var path="messagesservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+
+
+    function paln()
+    {
+
+        var path="bankingservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
 
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>

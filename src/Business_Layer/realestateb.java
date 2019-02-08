@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class realestateb {
-    public ArrayList<Realestate> getRealestatebusiness()
+    public ArrayList<Realestate> getRealestatebusiness(int id)
     {
         System.out.println("passed in business realestate data");
         String message="0";
@@ -15,7 +15,7 @@ public class realestateb {
         ArrayList<Realestate> realestatelist= new ArrayList<Realestate>();
         try {
             realestatedata obj=new realestatedata();
-            hashtableArrayList=obj.getRealestate();
+            hashtableArrayList=obj.getRealestate(id);
             if(hashtableArrayList.isEmpty()){
                 System.out.println("got nothing");
             }
@@ -26,25 +26,32 @@ public class realestateb {
                 System.out.println("got everything");
                 for(int i=0;i<hashtableArrayList.size();i++)
                 {
-                    String c1;
-                    String c2;
+                    String slug;
+                    String homeID;
+                    String desciption;
+                    String shortDescription;
+                    String cityName;
+                    String areaName;
                     String price;
-                    String location;
-                    String description;
-                    String size;
                     String title;
-                    String paginationhref;
+                    String rooms;
+                    String area;
+                    int check=0;
+                    int num=20;
 
-                    c1=hashtableArrayList.get(i).get("c1");
-                    c2=hashtableArrayList.get(i).get("c2");
+                    slug=hashtableArrayList.get(i).get("slug");
+                    homeID=hashtableArrayList.get(i).get("homeID");
+                    desciption=hashtableArrayList.get(i).get("description");
+                    shortDescription=hashtableArrayList.get(i).get("shortDescription");
+                    cityName=hashtableArrayList.get(i).get("cityName");
+                    areaName=hashtableArrayList.get(i).get("areaName");
                     price=hashtableArrayList.get(i).get("price");
-                    location=hashtableArrayList.get(i).get("location");
-                    description=hashtableArrayList.get(i).get("description");
-                    size=hashtableArrayList.get(i).get("size");
                     title=hashtableArrayList.get(i).get("title");
-                    paginationhref=hashtableArrayList.get(i).get("paginationhref");
+                    rooms=hashtableArrayList.get(i).get("rooms");
+                    area=hashtableArrayList.get(i).get("area");
 
-                    Realestate newobj=new Realestate(c1,c2,price,location,description,size,title,paginationhref);
+                    Realestate newobj=new Realestate(slug,desciption,shortDescription,cityName,areaName,price,title,rooms,area,check,num);
+                    newobj.setHomeID(homeID);
                     realestatelist.add(newobj);
 
                 }

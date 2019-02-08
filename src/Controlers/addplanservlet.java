@@ -17,21 +17,21 @@ public class addplanservlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name=req.getParameter("name");
-        String InvestmentFund=req.getParameter("InvestmentFund");
-        int maxagematurity=Integer.parseInt(req.getParameter("maxagematurity"));
-        int ATpaymentrange=Integer.parseInt(req.getParameter("ATpaymentrange"));
-        int SumAssured=Integer.parseInt(req.getParameter("SumAssured"));
-        int maxannualpremium=Integer.parseInt(req.getParameter("maxannualpremium"));
-        int contact=0;
-        String CM=req.getParameter("CoverMultiple");
-        String UnitAllocation=req.getParameter("unitallocation");
-        String Email=req.getParameter("email");
-        String ppmode=req.getParameter("ppmode");
-        String psf=req.getParameter("psf");
 
-
-
+        String Planid=req.getParameter("Planid");
+        String Bankid=req.getParameter("Bankid");
+        String Description=req.getParameter("Description");
+        String PlantermMin=req.getParameter("PlantermMin");
+        String PlantermMax=req.getParameter("PlantermMax");
+        String PlanRate=req.getParameter("PlanRate");
+        String MinimumInvestment=req.getParameter("MinimumInvestment");
+        String MaximumInvestment=req.getParameter("MaximumInvestment");
+        String Islamic=req.getParameter("Islamic");
+        String Monthly=req.getParameter("Monthly");
+        String Quaterly=req.getParameter("Quaterly");
+        String Halfyearly=req.getParameter("Halfyearly");
+        String Anually=req.getParameter("Anually");
+        String Other=req.getParameter("Other");
 
         String response="";
 
@@ -41,7 +41,7 @@ public class addplanservlet extends HttpServlet {
             try{
 
 
-                Bankingplan newbankingplan=new Bankingplan(name,InvestmentFund,maxagematurity,contact,ATpaymentrange,SumAssured,maxannualpremium,CM,UnitAllocation,Email,ppmode,psf);
+                Bankingplan newbankingplan=new Bankingplan(Planid,Bankid,Description,PlantermMin,PlantermMax,PlanRate,MinimumInvestment,MaximumInvestment,Islamic,Monthly,Quaterly,Halfyearly,Anually,Other,"","");
                 newbankingplan.addnewbankingplan();
                 RequestDispatcher rd=req.getRequestDispatcher("addbankingplan.jsp");
                 req.setAttribute("message",response);

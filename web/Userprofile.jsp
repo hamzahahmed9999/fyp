@@ -49,7 +49,7 @@ Top Bar
     <section id="topbar" class="d-none d-lg-block">
         <div class="container clearfix">
             <div class="contact-info float-left">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">HR@investsmart.com</a>
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">ContactTeam@investsmart.com</a>
                 <i class="fa fa-phone"></i> +92 3341731677
             </div>
             <div class="social-links float-right">
@@ -66,6 +66,8 @@ Top Bar
 Header
 ============================-->
     <header id="header">
+        <form method="post" id="form1">
+
         <div class="container">
 
             <div id="logo" class="pull-left">
@@ -81,20 +83,21 @@ Header
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li ><a href="#body">Home</a></li>
-                    <li><a href="Banking.jsp">Plans</a></li>
-                    <li><a href="">Real Estate</a></li>
+
+                    <li ><a href="SignupSignin.jsp">Home</a></li>
+                    <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
+                    <li><a href="javascript:{}" onclick="realestate()">Real Estate</a></li>
                     <li class="menu-active"><a href="Userprofile.jsp">Profile</a></li>
                     <li><a href="contactus.jsp">Contact</a></li>
 
-                    <li><a href="#" class="btn signup">Logout</a></li>
 
-
-                    </form>
+                    <li><button href="#" id="submitbtnlogout" onclick="logout()" class="btn signup">Logout</button></li>
 
                 </ul>
             </nav><!-- #nav-menu-container -->
+
         </div>
+        </form>
     </header><!-- #header -->
 
 
@@ -126,7 +129,7 @@ Header
 
 
 
-                <form id="preferences" action="preferences.jsp">
+                <form id="preferences" action="preferenceservlet" method="post">
 
                     <button id="submitbtn"class="btn btn-sm btn-block btn-outline-success bigger-110"><i class="fa fa-cog" aria-hidden="true"></i>Preferences</button>
                 </form>
@@ -334,6 +337,48 @@ login modal
 
     }
 
+
+
+
+
+    function realestate()
+    {
+
+        var path="realestateservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+    function paln()
+    {
+
+        var path="bankingservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+
+    }
+
+
+
+    function logout()
+    {
+        var id="preferences";
+        var path="logoutservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
 
 </script>
 

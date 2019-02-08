@@ -87,8 +87,8 @@ Header
                 <li><a href="#team">Messages</a></li>
                 <li><a href="#" class="btn signup">Logout</a></li>
                 <li onClick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login"
-                                            data-toggle="modal">Login</a></li>
-                <li><a href="#" class="btn signup">Signup</a></li>
+                                            data-toggle="modal" hidden>Login</a></li>
+                <li><a href="#" class="btn signup" hidden>Signup</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
     </div>

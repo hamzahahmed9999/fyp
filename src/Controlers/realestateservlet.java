@@ -1,6 +1,7 @@
 package Controlers;
 
 import Business_Layer.Realestate;
+import Business_Layer.User;
 import Business_Layer.realestateb;
 
 import javax.servlet.ServletException;
@@ -21,14 +22,20 @@ public class realestateservlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User obj1=(User) req.getSession().getAttribute("signedinuser");
 
+        int id=0;
+        if (obj1 != null)
+        {
+            id=obj1.getId();
+        }
         String message="";
         realestateb obj=new realestateb();
         System.out.println("realestate controler");
-        ArrayList<Realestate> datacoming=obj.getRealestatebusiness();
+        ArrayList<Realestate> datacoming=obj.getRealestatebusiness(id);
         if(datacoming.isEmpty())
         {
-             message="There are no such Realestate";
+            message="There are no such Realestate";
 
         }
 

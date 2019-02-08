@@ -1,11 +1,13 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Business_Layer.Message" %><%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
-  Date: 10/19/2018
-  Time: 12:19 AM
+  Date: 6/6/2018
+  Time: 12:07 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html lang="en">
 
 <head>
@@ -20,8 +22,7 @@
 
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
     <!-- Bootstrap CSS File -->
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +37,35 @@
 
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .review-block{
+            background-color:#FAFAFA;
+            border:1px solid #EFEFEF;
+            padding:15px;
+            border-radius:3px;
+            margin-bottom:15px;
+        }
+        .review-block-name{
+            font-size:12px;
+            margin:10px 0;
+        }
+        .review-block-date{
+            font-size:12px;
+        }
+        .review-block-rate{
+            font-size:13px;
+            margin-bottom:15px;
+        }
+        .review-block-title{
+            font-size:15px;
+            font-weight:700;
+            margin-bottom:10px;
+        }
+        .review-block-description{
+            font-size:13px;
+        }
 
+    </style>
 </head>
 
 <body id="body">
@@ -48,8 +77,8 @@ Top Bar
     <section id="topbar" class="d-none d-lg-block">
         <div class="container clearfix">
             <div class="contact-info float-left">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="fa fa-phone"></i> +1 5589 55488 55
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">HR@investsmart.com</a>
+                <i class="fa fa-phone"></i> +92 3341731677
             </div>
             <div class="social-links float-right">
                 <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -65,81 +94,81 @@ Top Bar
 Header
 ============================-->
     <header id="header">
-        <div class="container">
+        <form id="form1" method="post">
+            <div class="container">
 
-            <div id="logo" class="pull-left">
-                <h1>
-                    <a href="/">
-                        <img src="img/main-logo.png" alt="investSMART">
-                    </a>
+                <div id="logo" class="pull-left">
+                    <h1>
+                        <a href="/">
+                            <img src="img/main-logo.png" alt="investSMART">
+                        </a>
 
-                </h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+                    </h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+                </div>
+
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="#body">Home</a></li>
+
+                        <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
+                        <li><a href="javascript:{}" onclick="realestate()">Property Areas</a></li>
+                        <li><a href="#team">Messages</a></li>
+                        <li><a href="javascript:{}" onclick="logout()" class="btn signup">Logout</a></li>
+
+
+                    </ul>
+                </nav><!-- #nav-menu-container -->
             </div>
-
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="SignupSignin.jsp">Home</a></li>
-                    <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
-                    <li><a href="javascript:{}" onclick="realestate()">Real Estate</a></li>
-                    <li><a href="contactus.jsp">Contact</a></li>
-                    <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login"
-                                                data-toggle="modal">Login</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-        </div>
+        </form>
     </header><!-- #header -->
 
+    <br>
+    <div id="home" class="container" style="box-shadow: 0px 2px 30px rgba(0,0,0,0.30);margin-top: 2%;
+        margin-bottom: 2%;">
+        <div class="row" style="padding:2%">
+            <div class="col-md-12 center">
+
+                <%
+                    ArrayList<Message> messagelist=null;
+                    messagelist=(ArrayList<Message>)request.getSession().getAttribute("messagelist");
+
+
+                    for(int i=0;i<messagelist.size();i++)
+                    {
+                %>
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                            <div class="review-block-name"><a href="#"></a></div>
+                            <div class="review-block-date"><br/></div>
+                        </div>
+                        <div class="col-sm-9">
 
 
 
+                            <div class="review-block-title">Name</div>
+                            <p><%=messagelist.get(i).getFname()+" "+messagelist.get(i).getLname()%></p>
+                            <div class="review-block-description">Contact Number</div>
+                            <p><%=messagelist.get(i).getCntnumber()%></p>
+                            <div class="review-block-description">Email</div>
+                            <p><%=messagelist.get(i).getEmail()%></p>
+                            <div class="review-block-description">Message</div>
+                            <p><%=messagelist.get(i).getSubject()%></p>
 
-
-
-
-    <div class="panel panel-primary" style="margin:20px; margin-top: 5%;margin-bottom: 5%">
-        <div class="panel-heading">
-            <h3 class="panel-title">Registration Form</h3> </div>
-        <div class="panel-body">
-            <form action="Signup" method="post" class="form1">
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label for="name">Name* </label>
-                        <input type="text" class="form-control input-sm" id="name" name="uname" placeholder="" required> </div>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label for="uemail">Email*</label>
-                        <input type="email" class="form-control input-sm" id="uemail" name="uemail" placeholder="" required> </div>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label for="ucontact">Mobile*</label>
-                        <input type="text" class="form-control input-sm" id="ucontact" name="ucontact" placeholder="" required> </div>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label for="ucity">City*</label>
-                        <input type="text" class="form-control input-sm" id="ucity" name="ucity" placeholder="" required> </div>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label for="upassword">Password</label>
-                        <input type="password" class="form-control input-sm" id="upassword" name="upassword" placeholder="" required> </div>
-                </div>
-                <div class="col-md-12 col-sm-12" id="deceased">
-                    <div class="form-group col-md-3 col-sm-3">
-                        <label for="ugender">Gender*</label>
-                        <input type="text" class="form-control input-sm" id="ugender" name="ugender" placeholder="" required> </div>
-                    <div class="form-group col-md-3 col-sm-3">
-                        <label for="udob">DOB*</label>
-                        <input type="date" class="form-control input-sm" id="udob" name="udob" placeholder="" required><label> Format (DD/MM/YYYY )</label> </div>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label for="cpassword">Confirm Password</label>
-                        <input type="password" class="form-control input-sm" id="cpassword" name="cpassword" placeholder="" required>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <button id="submitform" class="btn btn-primary">Submit</button> </div>
-                </div>
-            </form>
-        </div>
-    </div>
+                    <hr/>
 
+                </div>
+                <%
+                    }
+                %>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /#home -->
 
 
 
@@ -187,8 +216,7 @@ login modal
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control form-control-lg" id="pwd1" required=""
-                               autocomplete="new-password">
+                        <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
                         <div class="invalid-feedback">Enter your password too!</div>
                     </div>
                     <div class="custom-control custom-checkbox">
@@ -196,7 +224,7 @@ login modal
                         <label class="custom-control-label" for="rememberMe">Remember me on this computer</label>
                     </div>
                     <div class="form-group py-4">
-                        <button class="btn btn-outline-secondary btn-lg">Cancel</button>
+                        <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Cancel</button>
                         <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
                     </div>
                 </form>
@@ -223,8 +251,21 @@ login modal
 
 
 
-<script type="text/javascript">
+<script>
 
+
+
+
+    function logout()
+    {
+        var path="logoutservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
 
 
     function realestate()
@@ -253,6 +294,12 @@ login modal
     }
 
 
+
+
+
+
+
+
 </script>
 
 
@@ -262,4 +309,7 @@ login modal
 
 </body>
 
+</html>
+
+</body>
 </html>

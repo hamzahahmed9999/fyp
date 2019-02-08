@@ -64,6 +64,7 @@
     Header
   ============================-->
     <header id="header">
+        <form id="form1" method="post">
         <div class="container">
 
             <div id="logo" class="pull-left">
@@ -80,14 +81,33 @@
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="SignupSignin.jsp">Home</a></li>
-                    <li><a href="Banking.jsp">Banking</a></li>
-                    <li><a href="">Real Estate</a></li>
+                    <li><a href="javascript:{}" onclick="paln()">Banking</a></li>
+                    <li><a href="javascript:{}" onclick="realestate()">Real Estate</a></li>
+
+                    <%
+                        if(request.getSession().getAttribute("signedinuser")!=null)
+                        {
+                    %>
+                    <li><a href="Userprofile.jsp">Profile</a></li>
+                    <li><a href="contactus.jsp">Contact</a></li>
+                    <li><a href="javascript:{}" onclick="logout()" class="btn signup">Logout</a></li>
+                    <%
+                        }
+                        else {
+
+                    %>
                     <li onclick="loginbtn()"><a href="#loginModal" role="button" id="loginbtn" class="btn login" data-toggle="modal">Login</a></li>
                     <li onclick=""><a href="Signup.jsp" role="button" id="signupbtn" class="btn signup" >Signup</a></li>
+                    <%
+                        }
+                    %>
+
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
+        </form>
     </header><!-- #header -->
+
 
 
     <!--==========================
@@ -97,10 +117,7 @@
 
         <div class="intro-content">
             <h2>We help <span>you Invest!</span></h2>
-            <div>
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>
-            </div>
+
         </div>
 
         <div id="intro-carousel" class="owl-carousel">
@@ -113,7 +130,7 @@
 
         <!--==========================
       About Section
-    ============================-->
+    ============================
         <section id="about" class="wow fadeInUp">
             <div class="container">
                 <div class="row">
@@ -122,8 +139,8 @@
                     </div>
 
                     <div class="col-lg-6 content">
-                        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-                        <h3>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+                        <h2>Based in Lahore/h2>
+                        <h3>But providing e.</h3>
 
                         <ul>
                             <li><i class="ion-android-checkmark-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
@@ -144,7 +161,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Services</h2>
-                    <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
+                    <p>We provide investment opportunities in Pakistan.</p>
                 </div>
 
                 <div class="row">
@@ -152,32 +169,32 @@
                     <div class="col-lg-6">
                         <div class="box wow fadeInLeft">
                             <div class="icon"><i class="fa fa-bar-chart"></i></div>
-                            <h4 class="title"><a href="">Business Growth</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident etiro rabeta lingo.</p>
+                            <h4 class="title"><a href="">Growth</a></h4>
+                            <p class="description">Helping your assets grow by investing in the right market</p>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="box wow fadeInRight">
                             <div class="icon"><i class="fa fa-picture-o"></i></div>
-                            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata nodera clas.</p>
+                            <h4 class="title"><a href="">Crediblitly</a></h4>
+                            <p class="description">We provide information from the most trusted and authentic sources</p>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="box wow fadeInLeft" data-wow-delay="0.2s">
                             <div class="icon"><i class="fa fa-shopping-bag"></i></div>
-                            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur trinige zareta lobur trade.</p>
+                            <h4 class="title"><a href="">Direct Contact</a></h4>
+                            <p class="description">We help you connect with the right person according to your investment needs</p>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="box wow fadeInRight" data-wow-delay="0.2s">
                             <div class="icon"><i class="fa fa-map"></i></div>
-                            <h4 class="title"><a href="">Magni Dolores</a></h4>
-                            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum rideta zanox satirente madera</p>
+                            <h4 class="title"><a href="">Personalized Preferences</a></h4>
+                            <p class="description">You can easily personalize your preferences and our AI will take care of the rest</p>
                         </div>
                     </div>
 
@@ -187,47 +204,47 @@
         </section><!-- #services -->
 
         <!--==========================
-      Clients Section
-    ============================-->
-        <section id="clients" class="wow fadeInUp">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Clients</h2>
-                    <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
-                </div>
+       Clients Section
+     ============================
+         <section id="clients" class="wow fadeInUp">
+             <div class="container">
+                 <div class="section-header">
+                     <h2>Clients</h2>
+                     <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
+                 </div>
 
-                <div class="owl-carousel clients-carousel">
-                    <img src="img/clients/client-1.png" alt="">
-                    <img src="img/clients/client-2.png" alt="">
-                    <img src="img/clients/client-3.png" alt="">
-                    <img src="img/clients/client-4.png" alt="">
-                    <img src="img/clients/client-5.png" alt="">
-                    <img src="img/clients/client-6.png" alt="">
-                    <img src="img/clients/client-7.png" alt="">
-                    <img src="img/clients/client-8.png" alt="">
-                </div>
+                 <div class="owl-carousel clients-carousel">
+                     <img src="img/clients/client-1.png" alt="">
+                     <img src="img/clients/client-2.png" alt="">
+                     <img src="img/clients/client-3.png" alt="">
+                     <img src="img/clients/client-4.png" alt="">
+                     <img src="img/clients/client-5.png" alt="">
+                     <img src="img/clients/client-6.png" alt="">
+                     <img src="img/clients/client-7.png" alt="">
+                     <img src="img/clients/client-8.png" alt="">
+                 </div>
 
-            </div>
-        </section><!-- #clients -->
+             </div>
+         </section><!-- #clients
 
 
-        <!--==========================
-      Call To Action Section
-    ============================-->
-        <section id="call-to-action" class="wow fadeInUp">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 text-center text-lg-left">
-                        <h3 class="cta-title">Call To Action</h3>
-                        <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                    <div class="col-lg-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="#">Call To Action</a>
-                    </div>
-                </div>
+         ==========================
+       Call To Action Section
+     ============================
+         <section id="call-to-action" class="wow fadeInUp">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-lg-9 text-center text-lg-left">
+                         <h3 class="cta-title">Call To Action</h3>
+                         <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                     </div>
+                     <div class="col-lg-3 cta-btn-container text-center">
+                         <a class="cta-btn align-middle" href="#">Call To Action</a>
+                     </div>
+                 </div>
 
-            </div>
-        </section><!-- #call-to-action -->
+             </div>
+         </section><!-- #call-to-action -->
 
         <!--==========================
       Our Team Section
@@ -240,10 +257,10 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="member">
-                            <div class="pic"><img src="img/team-1.jpg" alt=""></div>
+                            <div class="pic"><img src="" alt=""></div>
                             <div class="details">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
+                                <h4>Ahsan Awan</h4>
+
                                 <div class="social">
                                     <a href=""><i class="fa fa-twitter"></i></a>
                                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -256,10 +273,10 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="member">
-                            <div class="pic"><img src="img/team-2.jpg" alt=""></div>
+                            <div class="pic"><img src="" alt=""></div>
                             <div class="details">
-                                <h4>Sarah Jhinson</h4>
-                                <span>Product Manager</span>
+                                <h4>Hamzah Ahmed</h4>
+
                                 <div class="social">
                                     <a href=""><i class="fa fa-twitter"></i></a>
                                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -272,10 +289,10 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="member">
-                            <div class="pic"><img src="img/team-3.jpg" alt=""></div>
+                            <div class="pic"><img src="" alt=""></div>
                             <div class="details">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
+                                <h4>Hamzah Quddos</h4>
+
                                 <div class="social">
                                     <a href=""><i class="fa fa-twitter"></i></a>
                                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -288,10 +305,9 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="member">
-                            <div class="pic"><img src="img/team-4.jpg" alt=""></div>
+                            <div class="pic"><img src="" alt=""></div>
                             <div class="details">
-                                <h4>Amanda Jepson</h4>
-                                <span>Accountant</span>
+                                <h4>Basit Riaz</h4>
                                 <div class="social">
                                     <a href=""><i class="fa fa-twitter"></i></a>
                                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -309,11 +325,11 @@
         <!--==========================
       Contact Section
     ============================-->
-        <section id="contact" class="wow fadeInUp">
+        <main id="contact" class="wow fadeInUp">
             <div class="container">
                 <div class="section-header">
                     <h2>Contact Us</h2>
-                    <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
+                    <p>Please feel free to contact us</p>
                 </div>
 
                 <div class="row contact-info">
@@ -322,7 +338,7 @@
                         <div class="contact-address">
                             <i class="ion-ios-location-outline"></i>
                             <h3>Address</h3>
-                            <address>A108 Adam Street, NY 535022, USA</address>
+                            <address>FAST NU, Lahore</address>
                         </div>
                     </div>
 
@@ -330,7 +346,7 @@
                         <div class="contact-phone">
                             <i class="ion-ios-telephone-outline"></i>
                             <h3>Phone Number</h3>
-                            <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+                            <p><a href="">+923341731677</a></p>
                         </div>
                     </div>
 
@@ -338,63 +354,34 @@
                         <div class="contact-email">
                             <i class="ion-ios-email-outline"></i>
                             <h3>Email</h3>
-                            <p><a href="mailto:info@example.com">info@example.com</a></p>
+                            <p><a href="mailto:info@example.com">info@investsmart.com</a></p>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
+            <div id="google-map" data-latitude="31.48091" data-longitude="74.303227"></div>
 
-            <div class="container">
-                <div class="form">
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
-                    <div id="errormessage"></div>
-                    <form action="" method="post" role="form" class="contactForm">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                            <div class="validation"></div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div>
+</div>
 
-            </div>
-        </section><!-- #contact -->
+</section><!-- #contact -->
 
-    </main>
+</main>
 
-    <!--==========================
-    Footer
-  ============================-->
-    <footer id="footer">
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong>2018</strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-
-                Designed by <a href="https://bootstrapmade.com/">Hussain Haider</a>
-            </div>
+<!--==========================
+Footer
+============================-->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>2018</strong>. All Rights Reserved
         </div>
-    </footer><!-- #footer -->
 
-    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    </div>
+</footer><!-- #footer -->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 </div>
 
@@ -438,6 +425,65 @@ login modal
 
 
 
+
+<script type="text/javascript">
+
+    function preferences()
+    {
+        var id="preferences";
+        var path="preferences.jsp?";
+
+
+        document.getElementById("preferences").action=path;
+        document.getElementById("submitbtn").submit();
+
+
+    }
+
+
+
+
+
+    function realestate()
+    {
+
+        var path="realestateservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+    function paln()
+    {
+
+        var path="bankingservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+
+    }
+
+
+
+    function logout()
+    {
+        var id="preferences";
+        var path="logoutservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+</script>
 
 
 

@@ -1,43 +1,91 @@
 package Business_Layer;
 
 public class Realestate {
-    String c1;
-    String c2;
+    String homeID;
+    String slug;
+    String desciption;
+    String shortDescription;
+    String cityName;
+    String areaName;
     String price;
-    String location;
-    String size;
     String title;
-    String paginationhref;
-    String description;
+    String rooms;
+    String area;
+    int check;
+    int num;
 
     public Realestate() {
     }
 
-    public Realestate(String c1, String c2, String price, String location,String description, String size, String title, String paginationhref) {
-        this.c1 = c1;
-        this.c2 = c2;
-        this.description=description;
+    public Realestate(String slug, String desciption, String shortDescription, String cityName, String areaName, String price, String title, String rooms, String area,int check,int num) {
+        this.slug = slug;
+        this.desciption = desciption;
+        this.shortDescription=shortDescription;
+        this.cityName = cityName;
+        this.areaName = areaName;
         this.price = price;
-        this.location = location;
-        this.size = size;
         this.title = title;
-        this.paginationhref = paginationhref;
+        this.rooms = rooms;
+        this.area = area;
+        this.check=check;
+        this.num=num;
     }
 
-    public String getC1() {
-        return c1;
+
+    public String getHomeID() {
+        return homeID;
     }
 
-    public void setC1(String c1) {
-        this.c1 = c1;
+    public int getNum() {
+        return num;
     }
 
-    public String getC2() {
-        return c2;
+    public void setNum(int num) {
+        this.num = num;
     }
 
-    public void setC2(String c2) {
-        this.c2 = c2;
+    public void setHomeID(String homeID) {
+        this.homeID = homeID;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getDesciption() {
+        return desciption;
+    }
+
+    public void setDesciption(String desciption) {
+        this.desciption = desciption;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     public String getPrice() {
@@ -48,22 +96,6 @@ public class Realestate {
         this.price = price;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -72,19 +104,24 @@ public class Realestate {
         this.title = title;
     }
 
-    public String getPaginationhref() {
-        return paginationhref;
+    public String getRooms() {
+        return rooms;
     }
 
-    public void setPaginationhref(String paginationhref) {
-        this.paginationhref = paginationhref;
+    public void setRooms(String rooms) {
+        this.rooms = rooms;
     }
 
-    public String getDescription() {
-        return description;
+    public String getArea() {
+        return area;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setArea(String area) {
+        this.area = area;
     }
+
+    public int getCheck(){return check;}
+
+    public void setCheck(int check){this.check=check;}
 }
+

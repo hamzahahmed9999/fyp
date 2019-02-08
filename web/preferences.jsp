@@ -1,4 +1,4 @@
-<%--
+<%@ page import="Business_Layer.preference" %><%--
   Created by IntelliJ IDEA.
   User: Hamza Shah
   Date: 6/5/2018
@@ -48,8 +48,8 @@ Top Bar
     <section id="topbar" class="d-none d-lg-block">
         <div class="container clearfix">
             <div class="contact-info float-left">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="fa fa-phone"></i> +1 5589 55488 55
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">ContactTeam@investsmart.com</a>
+                <i class="fa fa-phone"></i> +92 3341731677
             </div>
             <div class="social-links float-right">
                 <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -65,6 +65,7 @@ Top Bar
 Header
 ============================-->
     <header id="header">
+        <form method="post" id="form1">
         <div class="container">
 
             <div id="logo" class="pull-left">
@@ -80,19 +81,30 @@ Header
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="#body">Home</a></li>
-                    <li><a href="Banking.jsp">Plans</a></li>
-                    <li><a href="">Real Estate</a></li>
-                    <li><a href="Userprofile.jsp">Profile</a></li>
+                    <li ><a href="SignupSignin.jsp">Home</a></li>
+                    <li><a href="javascript:{}" onclick="paln()">Plans</a></li>
+                    <li><a href="javascript:{}" onclick="realestate()">Real Estate</a></li>
+                    <li class="menu-active"><a href="Userprofile.jsp">Profile</a></li>
                     <li><a href="contactus.jsp">Contact</a></li>
 
-                    <li><a href="#" class="btn signup">Logout</a></li>
+                    <li><button href="#" id="submitbtnlogout" onclick="logout()" class="btn signup">Logout</button></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
+            </form>
     </header><!-- #header -->
 
+<%
 
+    preference userpreferences=(preference) request.getAttribute("preferences");
+    if(userpreferences==null )
+    {
+        userpreferences=new preference();
+    }
+
+
+
+%>
 
     <form method="post" action="/addpreferencesservlet">
         <div class="container" style="margin-top: 2%;margin-bottom: 2%;">
@@ -104,7 +116,7 @@ Header
 
                     <div class="form-group">
                         <label for="IR">Investment Range</label>
-                        <input type="text" class="form-control" id="IR" placeholder="enter number">
+                        <input type="text" class="form-control" id="IR" name="IR" placeholder="<%=userpreferences.getInvestmentrange()%>">
                     </div>
                 </div>
             </div>
@@ -115,15 +127,15 @@ Header
                     </div>
                     <div class="form-group">
                         <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" placeholder="Enter City">
+                        <input type="text" class="form-control" id="city" name="city" placeholder="<%=userpreferences.getCity()%>">
                     </div>
                     <div class="form-group">
                         <label for="Area">Area</label>
-                        <input type="text" class="form-control" id="Area" placeholder="Enter Area">
+                        <input type="text" class="form-control" id="Area" name="Area" placeholder="<%=userpreferences.getArea()%>">
                     </div>
                     <div class="form-group">
                         <label for="Size">Size</label>
-                        <input type="text" class="form-control" id="Size" placeholder="Enter Size">
+                        <input type="text" class="form-control" id="Size" name="Size" placeholder="<%=userpreferences.getSize()%>">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -132,12 +144,12 @@ Header
                     </div>
                     <div class="form-group">
                         <label for="stories">Stories</label>
-                        <input type="text" class="form-control" id="stories" placeholder="">
+                        <input type="text" class="form-control" id="stories" name="stories" placeholder="<%=userpreferences.getStories()%>">
                     </div>
 
                     <div class="form-group">
                         <label for="Bedrooms">Bedrooms</label>
-                        <input type="text" class="form-control" id="bedrooms" placeholder="">
+                        <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="<%=userpreferences.getBedrooms()%>">
                     </div>
                 </div>
             </div>
@@ -145,6 +157,7 @@ Header
                 <div class="col-md-9"></div>
                 <div class="col-md-3">
                     <button class="btn btn-success">Submit</button>
+                    <span > <%= request.getSession().getAttribute("message").toString() %></span>
                 </div>
             </div>
         </div>
@@ -232,6 +245,67 @@ login modal
 
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>
+
+<script type="text/javascript">
+
+
+    function preferences()
+    {
+        var id="preferences";
+        var path="preferences.jsp?";
+
+
+        document.getElementById("preferences").action=path;
+        document.getElementById("submitbtn").submit();
+
+
+    }
+
+
+
+
+
+    function realestate()
+    {
+
+        var path="realestateservlet?";
+
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+
+    }
+
+    function paln()
+    {
+
+        var path="bankisngservlet?";
+
+        document.getElementById("form1").action=path;
+        document.getElementById("form1").submit();
+
+    }
+
+
+    function logout()
+    {
+        var id="preferences";
+        var path="logoutservlet?";
+
+
+        document.getElementById("formlogout").action=path;
+        document.getElementById("submitbtnlogout").submit();
+
+
+    }
+
+
+
+</script>
+
+
+
 
 </body>
 

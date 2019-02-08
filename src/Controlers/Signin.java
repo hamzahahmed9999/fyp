@@ -2,6 +2,7 @@ package Controlers;
 
 import Business_Layer.User;
 import Business_Layer.admin;
+import Business_Layer.preference;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,29 +59,39 @@ public class Signin extends HttpServlet {
                 response = "Signin successfull";
                 try {
                     signedinuser = signinginuser.signin();
-                    if (signedinuser != null) {
+                    if (signedinuser.getId() != 0) {
                         int userid = signinginuser.getId();
                         String emailid = signinginuser.getEmail();
                         String pswrd = signinginuser.getPassword();
+                        preference tempobj=new preference();
+
 
                         System.out.println("got signed");
                         System.out.println(signedinuser.getId());
                         System.out.println(signedinuser.getGender());
 
                         HttpSession usersession = req.getSession();
+                        usersession.setAttribute("preferences", tempobj);
+                        req.setAttribute("preferences",tempobj);
                         usersession.setAttribute("signedinuser", signedinuser);
+                        req.getSession().setAttribute("message","");
                         req.setAttribute("signedinuser", signedinuser);
+
                         System.out.println("id is " + usersession.getId());
 
-                        RequestDispatcher rd = req.getRequestDispatcher("Userprofile.jsp");
-                        rd.forward(req, resp);
+
+                        //RequestDispatcher rd = req.getRequestDispatcher("Userprofile.jsp");
+                        //rd.forward(req, resp);
                         //realestateservlet obj=new realestateservlet();
                         //obj.doPost(req,resp);
+                        preferenceservlet obj=new preferenceservlet();
+                        obj.doPost(req,resp);
 
                         //resp.sendRedirect("Userprofile.jsp");
                     } else {
+                        System.out.println("coming in else");
                         response = "Signin failed";
-                        RequestDispatcher rd = req.getRequestDispatcher("SigninSignup.jsp");
+                        RequestDispatcher rd = req.getRequestDispatcher("/SignupSignin.jsp");
                         req.setAttribute("message", response);
                         rd.forward(req, resp);
                     }

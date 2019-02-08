@@ -279,7 +279,7 @@ mat-accordion{
   margin-top: 5%
 }
 
-#group:hover{
+#group{
   box-shadow: 0px 10px 5px #E5E5E5, 0px -10px 5px #E5E5E5;
 }
 

@@ -5,6 +5,8 @@ import Business_Layer.User;
 import Business_Layer.admin;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -15,18 +17,26 @@ public class userdata {
     public boolean signupcheck(String name, String email, String password, String contact,String gender,String city,String dob) throws SQLException {
         System.out.println("signupcheck");
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/investsmart", "root", null);
+            try{
 
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/investsmart", "root", null);
 //            int result1 = Integer.valueOf(mobile);
 //            int result2 = Integer.valueOf(age);
-            System.out.println("Hello1");
-            sqlquery = "insert into user (Username,Email,Password,DOB,City,Gender,ContactNo) values('" + name + "','" + email + "','" + password + "','" + dob + "','" + city + "','" + gender + "','" + contact + "')";
-            PreparedStatement st = conn.prepareStatement(sqlquery);
-            System.out.println("Hello2");
+                System.out.println("Hello1");
+                sqlquery = "INSERT INTO `user`(`ID`, `Username`, `Email`, `Password`, `DOB`, `City`, `Gender`, `ContactNo`, `type`, `datejoined`) VALUES(NULL,'" + name + "','" + email + "','" + password + "','" + dob + "','" + city + "','" + gender + "','" + contact + "','"+"normal"+"','"+ "2018-01-11"+"')";
+                PreparedStatement st = conn.prepareStatement(sqlquery);
+                System.out.println("Hello2");
 
-            st.executeUpdate();
-            System.out.println("executed the query");
+                st.executeUpdate();
+                System.out.println("executed the query");
+
+            }
+            catch (SQLException j)
+            {
+                j.printStackTrace();
+            }
+
 
             return true;
         } catch (ClassNotFoundException e) {
@@ -174,17 +184,15 @@ public class userdata {
     }
 
 
-    public Boolean sendmessagetoadmin(Message object, String message) {
+    public Boolean sendmessagetoadmin(Message object) {
         System.out.println("sending message");
         try {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/investsmart", "root", null);
 
-//            int result1 = Integer.valueOf(mobile);
-//            int result2 = Integer.valueOf(age);
                 System.out.println("Hello1");
-                sqlquery = "INSERT INTO admincontactmessages (id, firstname, lastname, contactnumber, subject) VALUES (NULL , 'hamza', 'ahmed', '03341731677', 'hello my name is hamza and i have this problem');";
+                sqlquery = "INSERT INTO admincontactmessages (id, firstname, lastname,contactnumber, subject,email) VALUES (NULL ,'"+object.getFname()+"','"+object.getLname()+"' ,'"+object.getCntnumber()+"', '"+object.getSubject()+"','"+object.getEmail()+"');";
                 PreparedStatement st = conn.prepareStatement(sqlquery);
                 System.out.println("prepared hotel query");
 
@@ -204,6 +212,58 @@ public class userdata {
 
         return true;
     }
+
+    public ArrayList<Message> getmessagetoadmin() {
+        System.out.println("getting messages");
+        ArrayList<Message> mymessages=new ArrayList<Message>();
+        try {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/investsmart", "root", null);
+
+
+                System.out.println("Hello1");
+                sqlquery = "Select * from admincontactmessages order by id DESC ";
+                PreparedStatement st = conn.prepareStatement(sqlquery);
+                System.out.println("prepared hotel query");
+
+                ResultSet rs = st.executeQuery();
+                System.out.println("executed the query");
+
+
+
+                while(rs.next())
+                {
+                    String fname=rs.getString("firstname");
+                    String lname=rs.getString("lastname");
+                    String cntnumber=rs.getString("contactnumber");
+                    String email=rs.getString("email");
+                    String subject=rs.getString("subject");
+
+                    Message obj=new Message(fname,lname,cntnumber,email,subject);
+
+                    mymessages.add(obj);
+                }
+
+
+
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return mymessages;
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return mymessages;
+
+        }
+
+
+        return mymessages;
+    }
+
+
 
 
 
